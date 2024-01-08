@@ -1,3 +1,0 @@
-User-agent: *
-Disallow: /.jpeg$
-Sitemap: https://rd.emoe.xyz/sitemap.xml
