@@ -7,10 +7,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <meta name="keywords" content="关键词1, 关键词2">
+    <meta name="keywords" content="">
     
     
-    <meta name="description" content="Emoe R&D产出的产品">
+    <meta name="description" content="Emoe SMU项目">
     
     <meta name="generator" content="teedoc">
     <meta name="theme" content="teedoc-plugin-theme-default">
@@ -46,10 +46,10 @@ MathJax = {"loader": {"load": ["output/svg"]}, "tex": {"inlineMath": [["$", "$"]
         
     
     
-    <title>产品 - Emoe R&D</title>
+    <title>EmoeSMU - Emoe R&D</title>
     
     <script type="text/javascript">js_vars = {}</script>
-    <script type="text/javascript">metadata = {"tags": [], "date": "2024-01-09", "update": [], "ts": 1704730758, "author": "", "brief": "", "cover": ""}</script>
+    <script type="text/javascript">metadata = {"tags": [], "date": false, "update": [], "ts": 0, "author": "", "brief": "", "cover": ""}</script>
 </head>
 
 
@@ -59,7 +59,7 @@ MathJax = {"loader": {"load": ["output/svg"]}, "tex": {"inlineMath": [["$", "$"]
         <div id="navbar_menu">
             <a class="site_title" href="/">
                 
-                    <img class="site_logo" src="/static/image/emoe_640x640.jpg" alt="my_site logo">
+                    <img class="site_logo" src="/static/image/emoe_640x640.jpg" alt="emoe r&d logo">
                 
                 
                     <h2>Emoe R&D</h2>
@@ -70,8 +70,8 @@ MathJax = {"loader": {"load": ["output/svg"]}, "tex": {"inlineMath": [["$", "$"]
         <div id="navbar_items">
             <div>
                 <ul id="nav_left">
-<li class="active"><a  href="/product/zh/">产品</a></li>
-<li class=""><a  href="/blog/">博客</a></li>
+<li class="active"><a  href="/projects/">项目规划</a></li>
+<li class=""><a  href="/blog/">产品文档</a></li>
 </ul>
 
             </div>
@@ -99,7 +99,12 @@ MathJax = {"loader": {"load": ["output/svg"]}, "tex": {"inlineMath": [["$", "$"]
                     
                 </div>
                 <ul class="show">
-<li class="active with_link"><a href="/product/zh/index.html"><span class="label">简介</span><span class=""></span></a></li>
+<li class="not_active no_link sidebar_category"><span class="label">Emoe R&D已完成项目</span></li>
+<li class="not_active with_link"><a href="/projects/EmoeDAQ/emoedaq-24.html"><span class="label">EmoeDAQ-24</span><span class=""></span></a></li>
+<li class="not_active with_link"><a href="/projects/EmoePulse/emoepulse.html"><span class="label">EmoePulse</span><span class=""></span></a></li>
+<li class="not_active no_link sidebar_category"><span class="label">Emoe R&D开发中项目</span></li>
+<li class="not_active no_link sidebar_category"><span class="label">Emoe R&D规划中项目</span></li>
+<li class="active with_link"><a href="/projects/EmoeSMU/emoesmu.html"><span class="label">EmoeSMU</span><span class=""></span></a></li>
 </ul>
 
             </div>
@@ -114,7 +119,7 @@ MathJax = {"loader": {"load": ["output/svg"]}, "tex": {"inlineMath": [["$", "$"]
                     <div id="article_head">
                         <div id="article_title">
                             
-                            <h1>产品</h1>
+                            <h1>EmoeSMU</h1>
                             
                         </div>
                         <div id="article_tags">
@@ -128,18 +133,8 @@ MathJax = {"loader": {"load": ["output/svg"]}, "tex": {"inlineMath": [["$", "$"]
                                 
                             </span>
                             
-                                <span class="article_date" title="最后修改日期： 2024-01-09">
-                                    2024-01-09
-                                </span>
-                            
                         </div>
                         <div id="article_info_right">
-                            
-                            <div id="source_link">
-                                <a href="https://github.com/emoestudio/emoerd.github.io/tree/gh-pages/docs/product/zh/README.md" target="_blank">
-                                    编辑本页
-                                </a>
-                            </div>
                             
                         </div>
                         </div>
@@ -153,27 +148,18 @@ MathJax = {"loader": {"load": ["output/svg"]}, "tex": {"inlineMath": [["$", "$"]
                     </div>
                     <div id="article_content">
                         
-                            <h2 id="%E6%B7%BB%E5%8A%A0%E6%96%87%E7%AB%A0">添加文章</h2>
-<ul>
-<li>在本文件所在目录创建 markdown 以  <code>.md</code> 结尾的文件，比如 <code>first.md</code></li>
-<li>在 <code>sidebar.yaml</code> 中添加侧边栏链接</li>
-</ul>
-
-<pre class="language-markdown"><code class="language-markdown">items:
--   label: Brief
-    file: README.md
--   label: First
-    file: first.md
-</code></pre>
-<h2 id="%E6%9B%B4%E5%A4%9A%E4%BE%8B%E5%AD%90">更多例子</h2>
-<p>更多请访问: <a href="https://teedoc.neucrack.com/"  target="_blank">teedoc.neucrack.com</a> 或者 <a href="https://teedoc.github.io/"  target="_blank">teedoc.github.io</a></p>
-<p>更多例子访问: <a href="https://github.com/teedoc/teedoc.github.io"  target="_blank">github.com/teedoc/teedoc.github.io</a> 或者 <a href="https://github.com/teedoc/template"  target="_blank">https://github.com/teedoc/template</a> , 或 <a href="https://github.com/sipeed/sipeed_wiki"  target="_blank">sipeed wiki</a></p>
+                            <p>EmoeSMU 是开源的小体积精密SMU（Source Measurement Unit）项目，目前正在规划中。</p>
 
                         
                     </div>
                 </div>
                 <div id="previous_next">
                     <div id="previous">
+                        
+                        <a href="/projects/EmoePulse/emoepulse.html">
+                            <span class="icon"></span>
+                            <span class="label">EmoePulse</span>
+                        </a>
                         
                     </div>
                     <div id="next">
@@ -197,7 +183,7 @@ MathJax = {"loader": {"load": ["output/svg"]}, "tex": {"inlineMath": [["$", "$"]
             <div id="footer_top">
                 <ul>
 <li><a>链接</a><ul><li><a target="_blank" href="https://teedoc.neucrack.com">Build by teedoc</a></li>
-<li><a  href="/sitemap.xml">网站地图</a></li>
+<li><a target="_blank" href="/sitemap.xml">网站地图</a></li>
 </ul>
 </li>
 <li><a>外部链接</a><ul><li><a target="_blank" href="https://github.com/neutree/teedoc">github</a></li>
@@ -234,8 +220,6 @@ MathJax = {"loader": {"load": ["output/svg"]}, "tex": {"inlineMath": [["$", "$"]
         <script src="/static/js/plugin_blog/main.js"></script>
     
         <script src="/static/js/custom.js"></script>
-    
-        <script type="text/javascript" src="/static/js/live.js"></script>
     
 </body>
 
