@@ -1,2 +1,3 @@
 User-agent: *
-Sitemap: https://my_name.github.io/sitemap.xml
+Disallow: /.jpeg$
+Sitemap: https://rd.emoe.xyz/sitemap.xml
