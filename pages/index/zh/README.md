@@ -1,8 +1,8 @@
 
 ---
-title: my_site
-keywords: my_site
-desc: my_site, 使用 teedoc 生成的网站
+title: Emoe R&D主页
+keywords: false
+desc: Emoe Research & Development主页
 id: home_page
 ---
 
@@ -10,7 +10,7 @@ id: home_page
 
 
 <div>
-    <h1><span>my_site</span></h1>
+    <h1><span>Emoe R&D主页</span></h1>
     <h3>好耶~ 网站出现啦！</h3>
 </div>
 <div id="big_btn_wrapper">

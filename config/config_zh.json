@@ -2,26 +2,26 @@
     "locale": "zh_CN",
     "class": "language_zh",
     "navbar": {
-        "title": "my_site",
+        "title": "Emoe R&D",
         "logo": {
-            "alt": "my_site logo",
-            "src": "/static/image/logo.png"
+            "alt": "emoe r&d logo",
+            "src": "/static/image/emoe_640x640.jpg"
         },
         "home_url": "/",
         "items": [
             {
-                "url": "/get_started/zh/",
-                "label": "安装使用",
+                "url": "/projects/zh/",
+                "label": "项目规划",
                 "position": "left"
             },
             {
                 "url": "/blog/",
-                "label": "博客",
+                "label": "产品文档",
                 "position": "left"
             },
             {
-                "url": "https://github.com/neutree/teedoc",
-                "label": "github",
+                "url": "https://github.com/emoestudio",
+                "label": "EmoeR&D Github",
                 "target": "_blank",
                 "position": "right"
             },
@@ -39,18 +39,19 @@
                 "label": "链接",
                 "items": [
                     {
-                        "label": "使用 teedoc 构建",
+                        "label": "Build by teedoc",
                         "url": "https://teedoc.neucrack.com",
                         "target": "_blank"
                     },
                     {
                         "label": "网站地图",
-                        "url": "/sitemap.xml"
+                        "url": "/sitemap.xml",
+                        "target": "_blank"
                     }
                 ]
             },
             {
-                "label": "源码",
+                "label": "外部链接",
                 "items": [
                     {
                         "label": "github",
@@ -72,13 +73,8 @@
         ],
         "bottom": [
             {
-                "label": "*ICP备********号",
+                "label": "ICP备19019064号",
                 "url": "https://beian.miit.gov.cn",
-                "target": "_blank"
-            },
-            {
-                "label": "*公网安备***********号",
-                "url": "http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=****************",
                 "target": "_blank"
             }
         ]
@@ -95,5 +91,5 @@
             }
         }
     },
-    "show_source": "编辑本页"
+    "show_source": false
 }

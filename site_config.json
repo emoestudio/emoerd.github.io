@@ -1,14 +1,15 @@
 {
-    "site_name": "mysite",
-    "site_slogon": "",
+    "site_name": "Emoe R&D",
+    "site_slogon": "Circuits, Cookie, that's all",
     "site_root_url": "/",
-    "site_domain": "my_name.github.io",
+    "site_domain": "rd.emoe.xyz",
     "site_protocol": "https",
     "config_template_dir": "config",
-    "source": "https://github.com/my_name/my_name.github.io/blob/main",
+    "source": "https://github.com/emoestudio/emoerd.github.io/tree/gh-pages",
     "route": {
         "docs": {
-            "/get_started/zh/": "docs/get_started/zh"
+            "/get_started/zh/": "docs/get_started/zh",
+            "/projects/zh/": "docs/projects/zh"
         },
         "pages": {
             "/": "pages/index/zh"
@@ -19,7 +20,14 @@
         },
         "blog": {
             "/blog/": "blog"
+        },
+        "plugins": {
+            "teedoc-plugin-blog": {
+            "from": "pypi",
+            "config": {
+            }
         }
+    }
     },
     "translate": {
         "docs": {
@@ -87,7 +95,8 @@
     },
     "rebuild_changes_delay": 1,
     "robots":{
-        "User-agent": "*"
+        "User-agent": "*",
+        "Disallow": "/.jpeg$"
     },
     "layout_root_dir": "layout"
 }
