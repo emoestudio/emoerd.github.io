@@ -3,8 +3,7 @@ title: EmoePulse
 keywords: analog
 desc: EmoePulse说明文档
 author: CNPP
-date: false
-tags: analog, emoepulse
+date: 2024-1
 ---
 
 

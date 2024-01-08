@@ -11,12 +11,12 @@
         "items": [
             {
                 "url": "/projects/",
-                "label": "项目规划",
+                "label": "产品文档",
                 "position": "left"
             },
             {
                 "url": "/blog/",
-                "label": "产品文档",
+                "label": "项目规划",
                 "position": "left"
             },
             {

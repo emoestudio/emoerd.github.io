@@ -1,13 +1,6 @@
 items:
--   label: Emoe R&D已完成项目
--   label: EmoeDAQ-24  
-    file: EmoeDAQ/emoedaq-24.md
 -   label: EmoePulse
     file: EmoePulse/emoepulse.md
--   label: Emoe R&D开发中项目
--   label: Emoe R&D规划中项目
--   label: EmoeSMU
-    file: EmoeSMU/emoesmu.md
 
 
 

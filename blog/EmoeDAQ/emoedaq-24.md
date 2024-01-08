@@ -1,8 +1,9 @@
 ---
 title: EmoeDAQ-24
-keywords: false
+keywords: analog, mixed signal
 desc: 24位全隔离数据采集卡
-date: false
+author: Floydfish
+date: 2024-1
 ---
 
 EmoeDAQ Test
