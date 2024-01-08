@@ -10,7 +10,7 @@
         "home_url": "/",
         "items": [
             {
-                "url": "/projects/zh/",
+                "url": "/projects/",
                 "label": "项目规划",
                 "position": "left"
             },

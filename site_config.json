@@ -9,7 +9,7 @@
     "route": {
         "docs": {
             "/get_started/zh/": "docs/get_started/zh",
-            "/projects/zh/": "docs/projects/zh"
+            "/projects/": "docs/projects"
         },
         "pages": {
             "/": "pages/index/zh"
