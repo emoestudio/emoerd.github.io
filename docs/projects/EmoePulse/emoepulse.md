@@ -1,12 +1,71 @@
 ---
-title: EmoePulse
+title: Emoe Pulse Lite V2 用户手册
 keywords: analog
-desc: EmoePulse说明文档
+desc: Emoe Pulse Lite V2 用户手册
 author: CNPP
 date: false
 tags: analog, emoepulse
 ---
 
+# Emoe Pulse Lite V2 用户手册
 
-Emoe Pulse是小体积便携式快沿脉冲发生器，可产生ps级上升沿的周期性快沿脉冲信号，用于评估示波器、模拟信号链路的带宽，也可当作TDR（时域反射计）的脉冲信号源使用。
+![0-1](/projects/assets/images/emoepulse/0-1.JPG)
 
+> 硬件版本： 2.1  
+> 手册版本： 1.0
+
+## 1. 简介
+
+Emoe Pulse Lite（下简称Pulse）是一款超低功耗的便携高速窄脉冲发生器，用于一定范围内的带宽测量及线缆检测。Pulse 的电路衍生自Jim Williams于[LT AN47](https://www.analog.com/media/en/technical-documentation/application-notes/an47fa.pdf)等参考手册中发布的雪崩脉冲发生电路，如下图：
+
+![1-1](/projects/assets/images/emoepulse/1-1.png)
+
+Pulse对Jim的设计进行了低功耗方向的优化，采用了雪崩击穿电压更低的射频三极管，并设计了超低功耗的DC-DC系统，使得整机可以在一片CR2032的供电下稳定工作较长时间。同时，Pulse亦可选择使用Type-C接口供电，两种供电方式通过开关选择，在通过Type-C接口供电时不需取下电池。
+
+![1-2](/projects/assets/images/emoepulse/1-2.JPG)
+
+## 2. 主要指标
+
+注意：由于Pulse电路的脉冲振荡受可调电容C影响，以下参数仅供参考。
+
+项目|参数
+---|---
+Type-C接口供电电压范围|4.5 - 5.5 V
+CR2032电池座供电电压范围|2.5 - 3.1 V
+上升时间|< 1.5 ns
+脉冲峰值@50Ohm|0.8 V
+脉冲峰值@1MOhm|1.2 V
+脉冲重复频率|200kHz
+
+## 3. 使用方法
+
+首先应该将包装中的CR2032电池装入Pulse背面的电池座，或接入5V供电的Type-C线缆。开关拨至`BAT`处，Pulse由电池供电；拨至对侧则为Type-C接口供电。
+
+Pulse的主要功能为单一窄脉冲源或线缆测试仪。Pulse拥有两个对称的**输出**端口，在作为单一窄脉冲源时，应在不用的端口装上附带的50Ohm负载帽。脉冲输出端口与待测端口连接时，应根据需要加入50Ohm匹配器，下图展示了使用Pulse测试示波器的模拟输入带宽：
+
+![1-3](/projects/assets/images/emoepulse/1-3.JPG)
+
+在以较大水平时间观察时，示波器应显示如下的窄脉冲串：
+
+![1-4](/projects/assets/images/emoepulse/1-4.JPG)
+
+在设置好触发电平后将水平时间减小至5ns/div左右，可观察窄脉冲及上升时间：
+
+![1-5](/projects/assets/images/emoepulse/1-5.JPG)
+
+当将Pulse作为线缆测试仪使用时，应将一端口紧贴示波器安装，另一端口接待测线缆。下图展示了测试开路传输线的效果：
+
+![1-6](/projects/assets/images/emoepulse/1-6.JPG)
+
+## 参考链接
+
++ Application Note 47, High Speed Amplifier Techniques: <https://www.analog.com/media/en/technical-documentation/application-notes/an47fa.pdf>
++ Application Note 94, Slew Rate Verification for Wideband Amplifiers: <https://www.analog.com/media/en/technical-documentation/application-notes/an94f.pdf>
+
+## 鸣谢
+
+## 修订历史
+
+日期|版本|说明
+---|---|---
+2024-01-28|1.0|首次发布

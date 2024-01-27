@@ -6,5 +6,5 @@ author: Floydfish
 date: 2024-1
 ---
 
-EmoeDAQ Test
+EmoeDAQ是全隔离的高精度数据采集卡模块，在5SPS采样率下有着22bit的无噪声分辨率。
 
