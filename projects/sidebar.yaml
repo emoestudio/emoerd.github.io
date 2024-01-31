@@ -1,6 +1,8 @@
 items:
 -   label: EmoePulse
     file: EmoePulse/emoepulse.md
+-   label: EmoeNAP
+    file: EmoeNAP/emoenap.md
 
 
 
