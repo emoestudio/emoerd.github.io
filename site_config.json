@@ -17,7 +17,8 @@
         "assets": {
             "/static/": "static",
             "/get_started/assets/": "docs/get_started/assets",
-            "/projects/assets/images/emoepulse": "docs/projects/assets/images/emoepulse"
+            "/projects/assets/images/emoepulse": "docs/projects/assets/images/emoepulse",
+            "/projects/assets/images/emoenap": "docs/projects/assets/images/emoenap"
         },
         "blog": {
             "/blog/": "blog"
