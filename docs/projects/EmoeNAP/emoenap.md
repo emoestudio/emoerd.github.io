@@ -9,6 +9,8 @@ tags: analog, emoenap
 
 # EmoeNAP 用户手册
 
+![EmoeNAP](https://emoe-blog.oss-cn-hangzhou.aliyuncs.com/emoerd/emoenap/P2.jpg)
+
 > 硬件版本： 1.1  
 > 手册版本： 1.0  
 
@@ -31,6 +33,18 @@ EmoeNAP的主要指标与特点如下：
 - 典型输出动态范围8Vpp（满电状态下）  
 - 输出阻抗：47Ω  
 - 电池供电，适合悬浮测试，消除接地环路噪声耦合  
+
+![EmoeNAP](https://emoe-blog.oss-cn-hangzhou.aliyuncs.com/emoerd/emoenap/P1.jpg)
+
+## 外观
+
+输入侧，从左到右依次是：电子文档二维码、电源开关、输入SMA接口、USB-C充电口、电源状态指示灯
+
+![EmoeNAP](https://emoe-blog.oss-cn-hangzhou.aliyuncs.com/emoerd/emoenap/P3.jpg)
+
+输出侧，从左到右依次为宽带（10Hz-2MHz）、10Hz-1MHz、10Hz-100kHz带宽的输出SMA接口
+
+![EmoeNAP](https://emoe-blog.oss-cn-hangzhou.aliyuncs.com/emoerd/emoenap/P4.jpg)
 
 ## 使用方法及注意事项
 
@@ -71,7 +85,8 @@ DMM的交流档输入是高阻输入，无需设置输入阻抗。
 
 ### 输出到自定义设备
 
-只需要保持设备的输入阻抗为100kΩ以上，输入电容不要太大即可。
+只需要保持设备的输入阻抗为100kΩ以上，输入电容不要太大即可。  
+如果必须使用50Ω输入阻抗，请注意电压分压比换算（在50Ω终端电阻上得到约0.5倍输出电压）  
 
 ### 应用EmoeNAP-CalKit
 
@@ -110,7 +125,7 @@ DMM的交流档输入是高阻输入，无需设置输入阻抗。
 
 - 尽量不要让输入端接有任何陶瓷电容，陶瓷电容受到任何震动都会产生噪声电压，破坏测量结果。如果不能没有，请做好隔震措施再测试    
 - 尽量不要在DUT和EmoeNAP输入端之间串联电阻，任何电阻值都会算入DUT的输出阻抗（源阻抗），使得EmoeNAP的本底噪声抬高，微弱信号测量时可能导致较大误差。  
-- EmoeNAP适合低输出阻抗的DUT测试，不适用于高源阻抗型DUT测试。源阻抗较高时，电流噪声将主导设备的底噪，使得测试结果不可用。  
+- EmoeNAP适合低输出阻抗的DUT测试，不适用于高源阻抗型DUT测试。**源阻抗较高时，电流噪声将主导设备的底噪，使得测试结果不可用**。  
 
 
 ## 性能测试与表征
@@ -136,6 +151,8 @@ DMM的交流档输入是高阻输入，无需设置输入阻抗。
 ### 底噪测试
 
 使用SMA-Short将输入短接，测量10Hz-100kHz、10Hz-1MHz、10Hz-Wideband输出端的噪声，分别为1.716mVrms、5.47mVrms、12.853mVrms。
+
+由于器件差异和增益校准误差，底噪可能略有波动。
 
 <center>
 
@@ -226,6 +243,9 @@ LM399手册给出的10Hz-10kHz带宽噪声为7uVrms（典型值），最大50uVr
 - [噪声放大器进阶指南](https://www.emoe.xyz/noise-amplifier-step-further/)    
 - [噪声放大器-量化寂静](https://www.emoe.xyz/emoenap-quantifying-silence/)
 - [运算放大器噪声分析](https://www.emoe.xyz/opamp-noise-analyze/)  
+
+此产品原理图开源，链接如下：
+
 - [Github-Emoe R&D](https://github.com/emoestudio/EmoeNAP)  
 
 
@@ -237,6 +257,7 @@ LM399手册给出的10Hz-10kHz带宽噪声为7uVrms（典型值），最大50uVr
 
 ## 修订历史
 
-- 2024.1.31 初版发布（v1.0）
+- 2024.1.31 初版发布（v1.0）  
+- 2024.2.27 增加图片，部分内容修订
 
 
