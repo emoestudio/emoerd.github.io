@@ -154,12 +154,12 @@ MathJax = {"loader": {"load": ["output/svg"]}, "tex": {"inlineMath": [["$", "$"]
 <p>硬件版本： 2.1<br />
 手册版本： 1.0</p>
 </blockquote>
-<h2 id="%E7%AE%80%E4%BB%8B">简介</h2>
+<h2 id="1.-%E7%AE%80%E4%BB%8B">1. 简介</h2>
 <p>Emoe Pulse Lite（下简称Pulse）是一款超低功耗的便携高速窄脉冲发生器，用于一定范围内的带宽测量及线缆检测。Pulse 的电路衍生自Jim Williams于<a href="https://www.analog.com/media/en/technical-documentation/application-notes/an47fa.pdf"  target="_blank">LT AN47</a>等参考手册中发布的雪崩脉冲发生电路，如下图：</p>
 <p><img src="https://cnpp-image.oss-cn-beijing.aliyuncs.com/emoe_rd_project/cnpp_01_emoe_pulse/emoe_pulse_lite_v2_1/img/1-1.png" alt="1-1" /></p>
 <p>Pulse对Jim的设计进行了低功耗方向的优化，采用了雪崩击穿电压更低的射频三极管，并设计了超低功耗的DC-DC系统，使得整机可以在一片CR2032的供电下稳定工作较长时间。同时，Pulse亦可选择使用Type-C接口供电，两种供电方式通过开关选择，在通过Type-C接口供电时不需取下电池。</p>
 <p><img src="https://cnpp-image.oss-cn-beijing.aliyuncs.com/emoe_rd_project/cnpp_01_emoe_pulse/emoe_pulse_lite_v2_1/img/1-2.JPG" alt="1-2" /></p>
-<h2 id="%E4%B8%BB%E8%A6%81%E6%8C%87%E6%A0%87">主要指标</h2>
+<h2 id="2.-%E4%B8%BB%E8%A6%81%E6%8C%87%E6%A0%87">2. 主要指标</h2>
 <p>注意：由于Pulse电路的脉冲振荡受可调电容C影响，以下参数仅供参考。</p>
 <table>
 <thead>
@@ -179,7 +179,7 @@ MathJax = {"loader": {"load": ["output/svg"]}, "tex": {"inlineMath": [["$", "$"]
 </tr>
 <tr>
   <td>上升时间</td>
-  <td>&lt; 850ps</td>
+  <td>&lt; 350ps</td>
 </tr>
 <tr>
   <td>脉冲峰值@50Ohm</td>
@@ -199,8 +199,11 @@ MathJax = {"loader": {"load": ["output/svg"]}, "tex": {"inlineMath": [["$", "$"]
 </tr>
 </tbody>
 </table>
-<h2 id="%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95">使用方法</h2>
-<p>首先应该将包装中的CR2032电池装入Pulse背面的电池座，或接入5V供电的Type-C线缆。开关拨至<code>BAT</code>处，Pulse由电池供电；拨至对侧则为Type-C接口供电。</p>
+<p>经Keysight DSAV334A 33GHz 80Gsa/s 测试的脉冲参数：</p>
+<h2 id="3.-%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95">3. 使用方法</h2>
+<p>首先应该将包装中的CR2032电池装入Pulse背面的电池座：</p>
+<p><img src="https://cnpp-image.oss-cn-beijing.aliyuncs.com/emoe_rd_project/cnpp_01_emoe_pulse/emoe_pulse_lite_v2_1/img/1-3-0.jpg" alt="1-3-0" /></p>
+<p>或接入5V供电的Type-C线缆。开关拨至<code>BAT</code>处，Pulse由电池供电；拨至对侧则为Type-C接口供电。</p>
 <p>Pulse的主要功能为单一窄脉冲源或线缆测试仪。Pulse拥有两个对称的<strong>输出</strong>端口，在作为单一窄脉冲源时，应在不用的端口装上附带的50Ohm负载帽。脉冲输出端口与待测端口连接时，应根据需要加入50Ohm匹配器，下图展示了使用Pulse测试示波器的模拟输入带宽：</p>
 <p><img src="https://cnpp-image.oss-cn-beijing.aliyuncs.com/emoe_rd_project/cnpp_01_emoe_pulse/emoe_pulse_lite_v2_1/img/1-3.JPG" alt="1-3" /></p>
 <p>在以较大水平时间观察时，示波器应显示如下的窄脉冲串：</p>
@@ -215,6 +218,10 @@ MathJax = {"loader": {"load": ["output/svg"]}, "tex": {"inlineMath": [["$", "$"]
 <li>Application Note 94, Slew Rate Verification for Wideband Amplifiers: <a href="https://www.analog.com/media/en/technical-documentation/application-notes/an94f.pdf"  target="_blank">https://www.analog.com/media/en/technical-documentation/application-notes/an94f.pdf</a></li>
 </ul>
 <h2 id="%E9%B8%A3%E8%B0%A2">鸣谢</h2>
+<ul>
+<li>@FloydFish的测试与线上手册支持</li>
+<li>@HAIDERdunk的33GHz示波器测试支持</li>
+</ul>
 <h2 id="%E4%BF%AE%E8%AE%A2%E5%8E%86%E5%8F%B2">修订历史</h2>
 <table>
 <thead>
@@ -229,6 +236,11 @@ MathJax = {"loader": {"load": ["output/svg"]}, "tex": {"inlineMath": [["$", "$"]
   <td>2024-01-28</td>
   <td>1.0</td>
   <td>首次发布</td>
+</tr>
+<tr>
+  <td>2024-03-02</td>
+  <td>1.1</td>
+  <td>增加了电池安装方法图以及上升沿测试图</td>
 </tr>
 </tbody>
 </table>
