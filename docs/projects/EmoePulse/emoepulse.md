@@ -79,3 +79,13 @@ Pulse的主要功能为单一窄脉冲源或线缆测试仪。Pulse拥有两个�
 ---|---|---
 2024-01-28|1.0|首次发布
 2024-03-02|1.1|增加了电池安装方法图以及上升沿测试图
+
+## 购买
+
+如果需要购买，请扫码加入Emoe R&D交流群获取货品备货信息：
+
+<center>
+
+<img src="https://emoe-blog.oss-cn-hangzhou.aliyuncs.com/emoerd/Common%20Resource/erd_qrcode.jpg" alt="baidu" width=50% border="0"/>
+
+</center>

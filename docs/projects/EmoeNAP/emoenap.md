@@ -19,7 +19,17 @@ tags: analog, emoenap
 - EmoeNAP主机一台  
 - EmoeNAP CalKit PCBA一套  
 - SMA短路帽一个（安装在输入端口上）  
-- SMA防尘帽3个（安装在输出端口上）  
+- SMA防尘帽3个（安装在输出端口上）
+
+## 购买  
+
+如果需要购买，请扫码加入Emoe R&D交流群获取货品备货信息：
+
+<center>
+
+<img src="https://emoe-blog.oss-cn-hangzhou.aliyuncs.com/emoerd/Common%20Resource/erd_qrcode.jpg" alt="baidu" width=50% border="0"/>
+
+</center>
 
 
 ## 简介
