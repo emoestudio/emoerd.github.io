@@ -148,12 +148,13 @@ pre[class*="language-"].line-numbers > code {
     cursor: pointer;
     transition: 0.2s;
     background: #4caf7d;
+    box-shadow: 1px 1px 2px 0px #4caf7d;
 }
 .btn:hover,
 #page_content .btn:hover,
 #content_body .btn:hover {
     background: #4caf7d;
-    box-shadow: 1px 1px 5px 0px #4caf7d;
+    box-shadow: 1px 1px 8px 0px #4caf7d;
 }
 .btn:visited,
 #page_content .btn:visited,
@@ -1266,9 +1267,6 @@ details > .details-content, details > div {
     }
     #footer_top > ul {
         flex-direction: column;
-    }
-    .md_page #page_content > div {
-        margin: 1.5em;
     }
     #article_tools {
         width: 100%;

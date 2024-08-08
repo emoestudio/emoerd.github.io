@@ -3,6 +3,8 @@ items:
     file: EmoePulse/emoepulse.md
 -   label: EmoeNAP
     file: EmoeNAP/emoenap.md
+-   label: EmoeDAQ
+    file: EmoeDAQ/emoedaq.md
 
 
 

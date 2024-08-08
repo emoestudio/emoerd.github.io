@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"  class=" language_zh ">
+
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="keywords" content="analog">
+    
+    
+    <meta name="description" content="EmoeDAQ 用户手册">
+    
+    <meta name="generator" content="teedoc">
+    <meta name="theme" content="teedoc-plugin-theme-default">
+    
+        
+        <meta name="markdown-generator" content="teedoc-plugin-markdown-parser">
+        
+        <script>
+MathJax = {"loader": {"load": ["output/svg"]}, "tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]]}, "svg": {"fontCache": "global"}};
+</script>
+        
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        
+        <script src="/static/js/theme_default/pre_main.js"></script>
+        
+        <link rel="stylesheet" href="/static/css/theme_default/prism.min.css" type="text/css"/>
+        
+        <link rel="stylesheet" href="/static/css/theme_default/viewer.min.css" type="text/css"/>
+        
+        <link rel="stylesheet" href="/static/css/theme_default/dark.css" type="text/css"/>
+        
+        <link rel="stylesheet" href="/static/css/theme_default/light.css" type="text/css"/>
+        
+        <script src="/static/js/theme_default/jquery.min.js"></script>
+        
+        <script src="/static/js/theme_default/split.js"></script>
+        
+        <link rel="stylesheet" href="/static/css/search/style.css" type="text/css"/>
+        
+        <meta name="blog-generator" content="teedoc-plugin-blog">
+        
+        <link rel="stylesheet" href="/static/css/custom.css" type="text/css"/>
+        
+    
+    
+    <title>EmoeDAQ 用户手册 - Emoe R&D</title>
+    
+    <script type="text/javascript">js_vars = {}</script>
+    <script type="text/javascript">metadata = {"tags": ["analog", "emoedaq"], "date": false, "update": [], "ts": 0, "author": "Floydfish", "brief": "", "cover": ""}</script>
+</head>
+
+
+<body class="type_doc">
+    
+    <div id="navbar">
+        <div id="navbar_menu">
+            <a class="site_title" href="/">
+                
+                    <img class="site_logo" src="/static/image/emoe_640x640.jpg" alt="emoe r&d logo">
+                
+                
+                    <h2>Emoe R&D</h2>
+                
+        </a>
+            <a id="navbar_menu_btn"></a>
+        </div>
+        <div id="navbar_items">
+            <div>
+                <ul id="nav_left">
+<li class="active"><a  href="/projects/">产品文档</a></li>
+<li class=""><a  href="/blog/">项目规划</a></li>
+</ul>
+
+            </div>
+            <div>
+                <ul id="nav_right">
+<li class=""><a target="_blank" href="https://github.com/emoestudio">EmoeR&D Github</a></li>
+</ul>
+
+                <ul class="nav_plugins"><li><a id="themes" class="light"></a></li></ul><ul class="nav_plugins"><li><a id="search"><span class="icon"></span><span class="placeholder">搜索</span>
+                            <div id="search_hints">
+                                <span id="search_input_hint">输入关键词，多关键词空格隔开</span>
+                                <span id="search_loading_hint">正在加载，请稍候。。。</span>
+                                <span id="search_download_err_hint">下载文件失败，请刷新重试或检查网络</span>
+                                <span id="search_other_docs_result_hint">来自其它文档的结果</span>
+                                <span id="search_curr_doc_result_hint">当前文档搜索结果</span>
+                            </div></a></li></ul>
+            </div>
+        </div>
+    </div>
+    
+    <div id="wrapper">
+        <div id="sidebar_wrapper">
+            <div id="sidebar">
+                <div id="sidebar_title">
+                    
+                </div>
+                <ul class="show">
+<li class="not_active with_link"><a href="/projects/EmoePulse/emoepulse.html"><span class="label">EmoePulse</span><span class=""></span></a></li>
+<li class="not_active with_link"><a href="/projects/EmoeNAP/emoenap.html"><span class="label">EmoeNAP</span><span class=""></span></a></li>
+<li class="active with_link"><a href="/projects/EmoeDAQ/emoedaq.html"><span class="label">EmoeDAQ</span><span class=""></span></a></li>
+</ul>
+
+            </div>
+        </div>
+        <div id="article">
+            <div id="menu_wrapper">
+                <div id="menu">
+                </div>
+            </div>
+            <div id="content_wrapper">
+                <div id="content_body">
+                    <div id="article_head">
+                        <div id="article_title">
+                            
+                            <h1>EmoeDAQ 用户手册</h1>
+                            
+                        </div>
+                        <div id="article_tags">
+                            <ul>
+                            
+                                <li>analog</li>
+                            
+                                <li>emoedaq</li>
+                            
+                            </ul>
+                        </div>
+                        <div id="article_info">
+                        <div id="article_info_left">
+                            <span class="article_author">
+                                Floydfish
+                            </span>
+                            
+                        </div>
+                        <div id="article_info_right">
+                            
+                        </div>
+                        </div>
+                    </div>
+                    <div id="article_tools">
+                        <span></span>
+                        <span id="toc_btn"></span>
+                    </div>
+                    <div id="update_history">
+                        
+                    </div>
+                    <div id="article_content">
+                        
+                            <h1 id="EmoeDAQ-%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C">EmoeDAQ 用户手册</h1>
+<p>EmoeDAQ是一款双通道、全差分输入的精密数据采集卡，具有±5V输入范围和24bit/32bit分辨率（24bit下，1 LSB等于0.6uV，32bit需要更换ADC），同时具有极低的Noise Floor、极高的输入阻抗、低输入偏置电流，非常适合用于精密直流数据采集应用。</p>
+<blockquote>
+<p>硬件版本： 1.1<br />
+手册版本： 0.1</p>
+</blockquote>
+<h2 id="%E7%89%A9%E7%90%86%E6%8E%A5%E5%8F%A3%E4%B8%8E%E6%A0%87%E8%AF%86">物理接口与标识</h2>
+<ul>
+<li>外壳尺寸100mm<em>66mm</em>27mm（长宽高），与EmoeNAP相同大小</li>
+<li>后面板：<ul>
+<li>Type-C，用于供电+串口通信</li>
+<li>预留PMOD接口，用于后续功能开发</li>
+<li>电源状态指示LED、采样状态指示LED</li>
+</ul>
+</li>
+<li>前面板：<ul>
+<li>8PIN 2.54mm间距插拔接线端子（KF-2.54），用于输入全差分模拟信号</li>
+<li>4PIN 2.54mm间距插拔接线端子（KF-2.54），用于内部电源输出（连接ULNA选件）</li>
+<li>输入过载指示灯（差分电压大于5V时，亮红灯）</li>
+</ul>
+</li>
+<li>（板内留有SWD接口，方便用户更新固件（一点也不方便））</li>
+</ul>
+<p>电源</p>
+<ul>
+<li>USB端口供电，电压为+5V±10%，单DAQ整机功耗约0.5W（5V 100mA）</li>
+<li>可从PMOD端口供电+通信（与USB二选一，二者间没有隔离），详见PMOD PIN MAP</li>
+</ul>
+<h2 id="%E9%80%9A%E4%BF%A1%E4%B8%8E%E5%8D%8F%E8%AE%AE">通信与协议</h2>
+<ul>
+<li>通过USART-USB与PC通信，用户也可自行从PMOD端与USART连接通信</li>
+<li>兼容标准SCPI指令集，同时DAQ部分兼容ADI的ADMX3652模块指令集</li>
+</ul>
+<h2 id="%E6%B5%8B%E9%87%8F%E7%AB%AF%E5%8F%82%E6%95%B0">测量端参数</h2>
+<ul>
+<li>测量端与供电端电气隔离（绝缘等级1.5kV），可实现真正的浮地测量</li>
+<li>每个输入端输入阻抗&gt;10GΩ，输入偏置电流＜300pA（+2.5V输入下）</li>
+<li>全差分输入测量范围为-5V至+5V（更常用的接法是将IN-接GND，IN+接输入电压，此时输入电压范围为0V至5V）</li>
+<li>输入端极限过载电压为10V（长时间过载将损坏前端）</li>
+</ul>
+<h2 id="SCPI%E6%8C%87%E4%BB%A4%E9%9B%86">SCPI指令集</h2>
+<p>EmoeDAQ采用SCPI指令集与上位机通过串口进行通讯。<br />
+DAQ的SCPI指令集可以分为4类，分别是：</p>
+<ul>
+<li>IEEE 488.2标准命令</li>
+<li>DAQ硬件配置命令</li>
+<li>DAQ采样控制命令</li>
+<li>DAQ系统命令</li>
+</ul>
+<p>SCPI指令集的简写为指定的单词开头（大写），比如 <code>CONFigure:VOLTage:DC:NPLCycles 10</code> 这句可以简写为 <code>CONF:VOLT:DC:NPLC 10</code>。</p>
+<h3 id="IEEE-488.2%E6%A0%87%E5%87%86%E5%91%BD%E4%BB%A4">IEEE 488.2标准命令</h3>
+<h4 id="%2ARST">*RST</h4>
+<ul>
+<li>格式：*<strong>RST</strong></li>
+<li>功能：复位EmoeDAQ，使其硬件重新初始化</li>
+<li>详细解释：接收到该命令后，DAQ会将隔离侧断电，并重新进行上电初始化操作。重新初始化后，DAQ进入出厂配置的默认工作状态</li>
+<li>示例：*RST</li>
+<li>返回值：&quot;DAQ reset complete&quot;</li>
+</ul>
+<h4 id="%2AIDN%3F">*IDN?</h4>
+<ul>
+<li>格式：*<strong>IDN?</strong></li>
+<li>功能：查询仪器ID信息</li>
+<li>详细解释：接收到该命令后，设备返回仪器型号，以及软件版本号等信息</li>
+<li>示例：*IDN?</li>
+<li>返回值：仪器型号，以及软件版本号等信息</li>
+</ul>
+<h3 id="DAQ%E9%85%8D%E7%BD%AE%E5%91%BD%E4%BB%A4">DAQ配置命令</h3>
+<h4 id="CONFigure%3AVOLTage%3ADC%3ANPLCycles">CONFigure:VOLTage:DC:NPLCycles</h4>
+<ul>
+<li>格式：<strong>CONFigure:VOLTage:DC:NPLCycles {0.1|0.25|0.5|1|10|100}</strong></li>
+<li>功能：配置DAQ采样的积分时间 <strong>(Number of PowerLine Cycles)</strong></li>
+<li>详细解释：用该命令设置DAQ采样的积分时间，积分时间越长，输出数据的噪声越低，电压有效位数越高。积分时间计算是依据工频电源周期数决定的，比如NPLC=10时，积分10个工频周期。假设市电频率是50Hz，周期20ms，那么10NPLC=200ms，对应5SPS/s的数据更新速率。<strong>需要注意，在开启AutoZero功能时，实际采样率将减半。</strong></li>
+<li>示例：CONFigure:VOLTage:DC:NPLCycles 100</li>
+<li>返回值：无</li>
+</ul>
+<h4 id="CONFigure%3AVOLTage%3ADC%3ANPLCycles%3F">CONFigure:VOLTage:DC:NPLCycles?</h4>
+<ul>
+<li>格式：<strong>CONFigure:VOLTage:DC:NPLCycles?</strong></li>
+<li>功能：查询DAQ采样的积分周期 <strong>(Number of PowerLine Cycles)</strong></li>
+<li>详细解释：用该命令查询DAQ采样的积分周期，积分周期越多，输出数据的噪声越低，电压有效位数越高。<strong>需要注意，在开启AutoZero功能时，实际采样率将减半。</strong></li>
+<li>示例：CONFigure:VOLTage:DC:NPLCycles?</li>
+<li>返回值：返回当前DAQ的采样积分周期</li>
+</ul>
+<h4 id="SYSTem%3ABAUDRATE%3ASET">SYSTem:BAUDRATE:SET</h4>
+<ul>
+<li>格式：<strong>SYSTem:BAUDRATE:SET {9600|14400|19200|38400|57600|115200|230400|460800|921600|1500000}</strong></li>
+<li>功能：设置DAQ的串口波特率</li>
+<li>详细解释：用该命令设置DAQ的串口通信波特率，设置完成后需要切换到新波特率与DAQ通信。</li>
+<li>示例：SYSTem:BAUDRATE:SET 115200</li>
+<li>返回值：无</li>
+</ul>
+<h4 id="SYSTem%3ABAUDRATE%3ASET%3F">SYSTem:BAUDRATE:SET?</h4>
+<ul>
+<li>格式：<strong>SYSTem:BAUDRATE:SET?</strong></li>
+<li>功能：查询DAQ当前的串口波特率</li>
+<li>详细解释：用该命令查询DAQ的串口通信波特率。</li>
+<li>示例：SYSTem:BAUDRATE:SET?</li>
+<li>返回值：返回当前的串口波特率</li>
+</ul>
+<h4 id="CONFigure%3AINFormation%3F">CONFigure:INFormation?</h4>
+<ul>
+<li>格式：<strong>CONFigure:INFormation?</strong></li>
+<li>功能：查询DAQ当前的系统设置</li>
+<li>详细解释：用该命令查询DAQ的系统设置，包括波特率、NPLC频率、NPLC周期数、AutoZero是否开启</li>
+<li>示例：CONFIGURE:INFormation?</li>
+<li>返回值：波特率、NPLC频率、NPLC周期数、AutoZero是否开启</li>
+</ul>
+<h4 id="CONFigure%3ACONTinuous%3AREAD">CONFigure:CONTinuous:READ</h4>
+<ul>
+<li>格式：<strong>CONFigure:CONTinuous:READ {1|2},{ON|OFF}</strong></li>
+<li>功能：设置DAQ的采样模式为单次（关闭CONT）或连续（开启CONT）</li>
+<li>详细解释：用该命令设置DAQ的采样模式，某通道在单次采样模式下，DAQ只有接收到触发信号时才会采样并输出数据（触发信号来自SCPI指令）；某通道在连续转换模式下，DAQ将自动按照设置的NPLC进行连续转换并输出数据。请注意，同时只有一个通道能被激活连续转换模式。如果需要2个通道同时连续转换，请使用扫描模式。</li>
+<li>返回值：无，但如果激活连续转换，随后紧跟对应的DAQ采样的数据</li>
+</ul>
+<p>未完待续......</p>
+
+                        
+                    </div>
+                </div>
+                <div id="previous_next">
+                    <div id="previous">
+                        
+                        <a href="/projects/EmoeNAP/emoenap.html">
+                            <span class="icon"></span>
+                            <span class="label">EmoeNAP</span>
+                        </a>
+                        
+                    </div>
+                    <div id="next">
+                        
+                    </div>
+                </div>
+                <div id="comments-container"></div>
+            </div>
+            <div id="toc_wrapper">
+                <div id="toc">
+                    <div id="toc_content">
+                            
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a id="to_top" href="#"></a>
+    <div id="doc_footer">
+        <div id="footer">
+            <div id="footer_top">
+                <ul>
+<li><a>链接</a><ul><li><a target="_blank" href="https://teedoc.neucrack.com">Build by teedoc</a></li>
+<li><a target="_blank" href="/sitemap.xml">网站地图</a></li>
+</ul>
+</li>
+<li><a>外部链接</a><ul><li><a target="_blank" href="https://github.com/neutree/teedoc">github</a></li>
+<li><a target="_blank" href="https://gitee.com/teedoc/teedoc">gitee</a></li>
+<li><a target="_blank" href="https://github.com/teedoc/teedoc.github.io">本网站源文件</a></li>
+</ul>
+</li>
+</ul>
+
+            </div>
+            <div id="footer_bottom">
+                <ul>
+<li><a target="_blank" href="https://beian.miit.gov.cn">ICP备19019064号</a></li>
+</ul>
+
+            </div>
+        </div>
+    </div>
+    
+        <script src="/teedoc-plugin-markdown-parser/mermaid.min.js"></script>
+    
+        <script>mermaid.initialize({startOnLoad:true});</script>
+    
+        <script src="/static/js/theme_default/tocbot.min.js"></script>
+    
+        <script src="/static/js/theme_default/main.js"></script>
+    
+        <script src="/static/js/theme_default/viewer.min.js"></script>
+    
+        <script src="/static/css/theme_default/prism.min.js"></script>
+    
+        <script src="/static/js/search/search_main.js"></script>
+    
+        <script src="/static/js/plugin_blog/main.js"></script>
+    
+        <script src="/static/js/custom.js"></script>
+    
+</body>
+
+</html>
