@@ -216,8 +216,8 @@ DAQ的SCPI指令集可以分为4类，分别是：</p>
 <li>示例：*IDN?</li>
 <li>返回值：仪器型号，以及软件版本号等信息</li>
 </ul>
-<h3 id="DAQ%E9%85%8D%E7%BD%AE%E5%91%BD%E4%BB%A4">DAQ配置命令</h3>
-<h4 id="CONFigure%3AVOLTage%3ADC%3ANPLCycles">CONFigure:VOLTage:DC:NPLCycles</h4>
+<h3 id="DAQ%E9%87%87%E6%A0%B7%E6%8E%A7%E5%88%B6%E5%91%BD%E4%BB%A4">DAQ采样控制命令</h3>
+<h4 id="%E8%AE%BE%E7%BD%AE%E9%87%87%E6%A0%B7%E7%A7%AF%E5%88%86%E5%91%A8%E6%9C%9F">设置采样积分周期</h4>
 <ul>
 <li>格式：<strong>CONFigure:VOLTage:DC:NPLCycles {0.1|0.25|0.5|1|10|100}</strong></li>
 <li>功能：配置DAQ采样的积分时间 <strong>(Number of PowerLine Cycles)</strong></li>
@@ -225,7 +225,7 @@ DAQ的SCPI指令集可以分为4类，分别是：</p>
 <li>示例：CONFigure:VOLTage:DC:NPLCycles 100</li>
 <li>返回值：无</li>
 </ul>
-<h4 id="CONFigure%3AVOLTage%3ADC%3ANPLCycles%3F">CONFigure:VOLTage:DC:NPLCycles?</h4>
+<h4 id="%E6%9F%A5%E8%AF%A2%E9%87%87%E6%A0%B7%E7%A7%AF%E5%88%86%E5%91%A8%E6%9C%9F">查询采样积分周期</h4>
 <ul>
 <li>格式：<strong>CONFigure:VOLTage:DC:NPLCycles?</strong></li>
 <li>功能：查询DAQ采样的积分周期 <strong>(Number of PowerLine Cycles)</strong></li>
@@ -233,15 +233,40 @@ DAQ的SCPI指令集可以分为4类，分别是：</p>
 <li>示例：CONFigure:VOLTage:DC:NPLCycles?</li>
 <li>返回值：返回当前DAQ的采样积分周期</li>
 </ul>
-<h4 id="SYSTem%3ABAUDRATE%3ASET">SYSTem:BAUDRATE:SET</h4>
+<h4 id="%E8%AE%BE%E7%BD%AEDAQ%E9%87%87%E6%A0%B7%E6%A8%A1%E5%BC%8F-%E8%BF%9E%E7%BB%AD/%E5%8D%95%E6%AC%A1">设置DAQ采样模式-连续/单次</h4>
+<ul>
+<li>格式：<strong>CONFigure:CONTinuous:READ {1|2},{ON|OFF}</strong></li>
+<li>功能：设置DAQ的采样模式为单次（关闭CONT）或连续（开启CONT）</li>
+<li>详细解释：用该命令设置DAQ的采样模式，某通道在单次采样模式下，DAQ只有接收到触发信号时才会采样并输出数据（触发信号来自SCPI指令）；某通道在连续转换模式下，DAQ将自动按照设置的NPLC进行连续转换并输出数据。请注意，同时只有一个通道能被激活连续转换模式。如果需要2个通道同时连续转换，请使用扫描模式。</li>
+<li>示例：CONFigure:CONTinuous:READ 1,ON</li>
+<li>返回值：无，但如果激活连续转换，随后紧跟对应的DAQ采样的数据</li>
+</ul>
+<h4 id="%E8%AE%BE%E7%BD%AEDAQ%E9%87%87%E6%A0%B7%E6%A8%A1%E5%BC%8F-%E8%BF%9E%E7%BB%AD%E6%89%AB%E6%8F%8F">设置DAQ采样模式-连续扫描</h4>
+<ul>
+<li>格式：<strong>CONFigure:CONTinuous:SCAN {ON|OFF}</strong></li>
+<li>功能：设置DAQ的采样模式为扫描转换</li>
+<li>详细解释：用该命令设置DAQ为连续扫描转换模式，该模式下DAQ先对CH1进行转换，然后对CH2进行转换，最后依次、同时输出2个通道的电压值。</li>
+<li>示例：CONFigure:CONTinuous:SCAN ON</li>
+<li>返回值：无，但如果激活连续扫描转换，随后紧跟对应的DAQ采样的数据</li>
+</ul>
+<h4 id="%E8%AE%BE%E7%BD%AEAutoZero">设置AutoZero</h4>
+<ul>
+<li>格式：<strong>CONFigure:AutoZero:DC {ON|OFF}</strong></li>
+<li>功能：设置DAQ采样的自动校零功能</li>
+<li>详细解释：用该命令设置DAQ的自动校零功能，AutoZero开启时，DAQ先测量信号链自身的失调电压，然后再测量输入信号电压，最后输出失调矫正过的数据。该模式仅对单次转换、单通道连续转换适用，暂不支持扫描转换。开启AutoZero后，对应的转换速率减半。</li>
+<li>示例：CONFigure:AutoZero:DC ON</li>
+<li>返回值：无</li>
+</ul>
+<h3 id="DAQ%E7%A1%AC%E4%BB%B6%E9%85%8D%E7%BD%AE%E5%91%BD%E4%BB%A4">DAQ硬件配置命令</h3>
+<h4 id="%E8%AE%BE%E7%BD%AE%E9%80%9A%E4%BF%A1%E6%B3%A2%E7%89%B9%E7%8E%87">设置通信波特率</h4>
 <ul>
 <li>格式：<strong>SYSTem:BAUDRATE:SET {9600|14400|19200|38400|57600|115200|230400|460800|921600|1500000}</strong></li>
 <li>功能：设置DAQ的串口波特率</li>
-<li>详细解释：用该命令设置DAQ的串口通信波特率，设置完成后需要切换到新波特率与DAQ通信。</li>
+<li>详细解释：用该命令设置DAQ的串口通信波特率，立刻生效，<strong>设置完成后需要切换到新波特率与DAQ通信</strong>。</li>
 <li>示例：SYSTem:BAUDRATE:SET 115200</li>
 <li>返回值：无</li>
 </ul>
-<h4 id="SYSTem%3ABAUDRATE%3ASET%3F">SYSTem:BAUDRATE:SET?</h4>
+<h4 id="%E6%9F%A5%E8%AF%A2%E9%80%9A%E4%BF%A1%E6%B3%A2%E7%89%B9%E7%8E%87">查询通信波特率</h4>
 <ul>
 <li>格式：<strong>SYSTem:BAUDRATE:SET?</strong></li>
 <li>功能：查询DAQ当前的串口波特率</li>
@@ -249,7 +274,7 @@ DAQ的SCPI指令集可以分为4类，分别是：</p>
 <li>示例：SYSTem:BAUDRATE:SET?</li>
 <li>返回值：返回当前的串口波特率</li>
 </ul>
-<h4 id="CONFigure%3AINFormation%3F">CONFigure:INFormation?</h4>
+<h4 id="%E6%9F%A5%E8%AF%A2DAQ%E7%B3%BB%E7%BB%9F%E8%AE%BE%E7%BD%AE">查询DAQ系统设置</h4>
 <ul>
 <li>格式：<strong>CONFigure:INFormation?</strong></li>
 <li>功能：查询DAQ当前的系统设置</li>
@@ -257,14 +282,15 @@ DAQ的SCPI指令集可以分为4类，分别是：</p>
 <li>示例：CONFIGURE:INFormation?</li>
 <li>返回值：波特率、NPLC频率、NPLC周期数、AutoZero是否开启</li>
 </ul>
-<h4 id="CONFigure%3ACONTinuous%3AREAD">CONFigure:CONTinuous:READ</h4>
+<h3 id="DAQ%E7%B3%BB%E7%BB%9F%E5%91%BD%E4%BB%A4">DAQ系统命令</h3>
+<h4 id="%E6%B5%8B%E9%87%8F%E6%9D%BF%E4%B8%8A%E6%B8%A9%E5%BA%A6">测量板上温度</h4>
 <ul>
-<li>格式：<strong>CONFigure:CONTinuous:READ {1|2},{ON|OFF}</strong></li>
-<li>功能：设置DAQ的采样模式为单次（关闭CONT）或连续（开启CONT）</li>
-<li>详细解释：用该命令设置DAQ的采样模式，某通道在单次采样模式下，DAQ只有接收到触发信号时才会采样并输出数据（触发信号来自SCPI指令）；某通道在连续转换模式下，DAQ将自动按照设置的NPLC进行连续转换并输出数据。请注意，同时只有一个通道能被激活连续转换模式。如果需要2个通道同时连续转换，请使用扫描模式。</li>
-<li>返回值：无，但如果激活连续转换，随后紧跟对应的DAQ采样的数据</li>
+<li>格式：<strong>MEASure:TEMPerature?</strong></li>
+<li>功能：查询DAQ当前的系统设置</li>
+<li>详细解释：用该命令激活板上温度传感器，测量基准和ADC附近的温度值，返回给用户。</li>
+<li>示例：MEASure:TEMPerature?</li>
+<li>返回值：板上温度，保留3位小数</li>
 </ul>
-<p>未完待续......</p>
 
                         
                     </div>
