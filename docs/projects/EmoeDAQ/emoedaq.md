@@ -77,9 +77,9 @@ SCPI指令集的简写为指定的单词开头（大写），比如 `CONFigure:V
 - 示例：*IDN?
 - 返回值：仪器型号，以及软件版本号等信息
 
-### DAQ配置命令
+### DAQ采样控制命令
 
-#### CONFigure:VOLTage:DC:NPLCycles
+#### 设置采样积分周期
 
 - 格式：**CONFigure:VOLTage:DC:NPLCycles {0.1|0.25|0.5|1|10|100}**
 - 功能：配置DAQ采样的积分时间 **(Number of PowerLine Cycles)**
@@ -87,7 +87,8 @@ SCPI指令集的简写为指定的单词开头（大写），比如 `CONFigure:V
 - 示例：CONFigure:VOLTage:DC:NPLCycles 100
 - 返回值：无
 
-#### CONFigure:VOLTage:DC:NPLCycles?
+
+#### 查询采样积分周期
 
 - 格式：**CONFigure:VOLTage:DC:NPLCycles?**
 - 功能：查询DAQ采样的积分周期 **(Number of PowerLine Cycles)**
@@ -95,15 +96,45 @@ SCPI指令集的简写为指定的单词开头（大写），比如 `CONFigure:V
 - 示例：CONFigure:VOLTage:DC:NPLCycles?
 - 返回值：返回当前DAQ的采样积分周期
 
-#### SYSTem:BAUDRATE:SET
+
+#### 设置DAQ采样模式-连续/单次
+
+- 格式：**CONFigure:CONTinuous:READ {1|2},{ON|OFF}**
+- 功能：设置DAQ的采样模式为单次（关闭CONT）或连续（开启CONT）
+- 详细解释：用该命令设置DAQ的采样模式，某通道在单次采样模式下，DAQ只有接收到触发信号时才会采样并输出数据（触发信号来自SCPI指令）；某通道在连续转换模式下，DAQ将自动按照设置的NPLC进行连续转换并输出数据。请注意，同时只有一个通道能被激活连续转换模式。如果需要2个通道同时连续转换，请使用扫描模式。
+- 示例：CONFigure:CONTinuous:READ 1,ON
+- 返回值：无，但如果激活连续转换，随后紧跟对应的DAQ采样的数据
+
+
+#### 设置DAQ采样模式-连续扫描
+
+- 格式：**CONFigure:CONTinuous:SCAN {ON|OFF}**
+- 功能：设置DAQ的采样模式为扫描转换
+- 详细解释：用该命令设置DAQ为连续扫描转换模式，该模式下DAQ先对CH1进行转换，然后对CH2进行转换，最后依次、同时输出2个通道的电压值。
+- 示例：CONFigure:CONTinuous:SCAN ON
+- 返回值：无，但如果激活连续扫描转换，随后紧跟对应的DAQ采样的数据
+
+
+#### 设置AutoZero
+
+- 格式：**CONFigure:AutoZero:DC {ON|OFF}**
+- 功能：设置DAQ采样的自动校零功能
+- 详细解释：用该命令设置DAQ的自动校零功能，AutoZero开启时，DAQ先测量信号链自身的失调电压，然后再测量输入信号电压，最后输出失调矫正过的数据。该模式仅对单次转换、单通道连续转换适用，暂不支持扫描转换。开启AutoZero后，对应的转换速率减半。
+- 示例：CONFigure:AutoZero:DC ON
+- 返回值：无
+
+
+### DAQ硬件配置命令
+
+#### 设置通信波特率
 
 - 格式：**SYSTem:BAUDRATE:SET {9600|14400|19200|38400|57600|115200|230400|460800|921600|1500000}**
 - 功能：设置DAQ的串口波特率
-- 详细解释：用该命令设置DAQ的串口通信波特率，设置完成后需要切换到新波特率与DAQ通信。
+- 详细解释：用该命令设置DAQ的串口通信波特率，立刻生效，**设置完成后需要切换到新波特率与DAQ通信**。
 - 示例：SYSTem:BAUDRATE:SET 115200
 - 返回值：无
 
-#### SYSTem:BAUDRATE:SET?
+#### 查询通信波特率
 
 - 格式：**SYSTem:BAUDRATE:SET?**
 - 功能：查询DAQ当前的串口波特率
@@ -111,7 +142,7 @@ SCPI指令集的简写为指定的单词开头（大写），比如 `CONFigure:V
 - 示例：SYSTem:BAUDRATE:SET?
 - 返回值：返回当前的串口波特率
 
-#### CONFigure:INFormation?
+#### 查询DAQ系统设置
 
 - 格式：**CONFigure:INFormation?**
 - 功能：查询DAQ当前的系统设置
@@ -119,15 +150,19 @@ SCPI指令集的简写为指定的单词开头（大写），比如 `CONFigure:V
 - 示例：CONFIGURE:INFormation?
 - 返回值：波特率、NPLC频率、NPLC周期数、AutoZero是否开启
 
-#### CONFigure:CONTinuous:READ
 
-- 格式：**CONFigure:CONTinuous:READ {1|2},{ON|OFF}**
-- 功能：设置DAQ的采样模式为单次（关闭CONT）或连续（开启CONT）
-- 详细解释：用该命令设置DAQ的采样模式，某通道在单次采样模式下，DAQ只有接收到触发信号时才会采样并输出数据（触发信号来自SCPI指令）；某通道在连续转换模式下，DAQ将自动按照设置的NPLC进行连续转换并输出数据。请注意，同时只有一个通道能被激活连续转换模式。如果需要2个通道同时连续转换，请使用扫描模式。
-- 返回值：无，但如果激活连续转换，随后紧跟对应的DAQ采样的数据
+### DAQ系统命令
+
+#### 测量板上温度
+
+- 格式：**MEASure:TEMPerature?**
+- 功能：查询DAQ当前的系统设置
+- 详细解释：用该命令激活板上温度传感器，测量基准和ADC附近的温度值，返回给用户。
+- 示例：MEASure:TEMPerature?
+- 返回值：板上温度，保留3位小数
 
 
-未完待续......
+
 
 
 
