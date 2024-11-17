@@ -7,10 +7,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <meta name="keywords" content="analog">
+    <meta name="keywords" content="EmoeDAQ">
     
     
-    <meta name="description" content="Emoe SMU项目">
+    <meta name="description" content="EmoeDAQ 详细指标">
     
     <meta name="generator" content="teedoc">
     <meta name="theme" content="teedoc-plugin-theme-default">
@@ -46,10 +46,10 @@ MathJax = {"loader": {"load": ["output/svg"]}, "tex": {"inlineMath": [["$", "$"]
         
     
     
-    <title>EmoeSMU - Emoe R&D</title>
+    <title>EmoeDAQ 详细指标 - Emoe R&D</title>
     
     <script type="text/javascript">js_vars = {}</script>
-    <script type="text/javascript">metadata = {"tags": [], "date": "2024-11-17", "update": [], "ts": 1731845173, "author": "Floydfish", "brief": "", "cover": ""}</script>
+    <script type="text/javascript">metadata = {"tags": ["analog", "emoedaq"], "date": false, "update": [], "ts": 0, "author": "Floydfish", "brief": "", "cover": ""}</script>
 </head>
 
 
@@ -70,8 +70,8 @@ MathJax = {"loader": {"load": ["output/svg"]}, "tex": {"inlineMath": [["$", "$"]
         <div id="navbar_items">
             <div>
                 <ul id="nav_left">
-<li class=""><a  href="/projects/">产品文档</a></li>
-<li class="active"><a  href="/blog/">项目规划</a></li>
+<li class="active"><a  href="/projects/">产品文档</a></li>
+<li class=""><a  href="/blog/">项目规划</a></li>
 </ul>
 
             </div>
@@ -99,6 +99,9 @@ MathJax = {"loader": {"load": ["output/svg"]}, "tex": {"inlineMath": [["$", "$"]
                     
                 </div>
                 <ul class="">
+<li class="not_active with_link"><a href="/projects/EmoePulse/emoepulse.html"><span class="label">EmoePulse</span><span class=""></span></a></li>
+<li class="not_active with_link"><a href="/projects/EmoeNAP/emoenap.html"><span class="label">EmoeNAP</span><span class=""></span></a></li>
+<li class="not_active with_link"><a href="/projects/EmoeDAQ/emoedaq.html"><span class="label">EmoeDAQ</span><span class=""></span></a></li>
 </ul>
 
             </div>
@@ -113,11 +116,15 @@ MathJax = {"loader": {"load": ["output/svg"]}, "tex": {"inlineMath": [["$", "$"]
                     <div id="article_head">
                         <div id="article_title">
                             
-                            <h1>EmoeSMU</h1>
+                            <h1>EmoeDAQ 详细指标</h1>
                             
                         </div>
                         <div id="article_tags">
                             <ul>
+                            
+                                <li>analog</li>
+                            
+                                <li>emoedaq</li>
                             
                             </ul>
                         </div>
@@ -126,10 +133,6 @@ MathJax = {"loader": {"load": ["output/svg"]}, "tex": {"inlineMath": [["$", "$"]
                             <span class="article_author">
                                 Floydfish
                             </span>
-                            
-                                <span class="article_date" title="最后修改日期： 2024-11-17">
-                                    2024-11-17
-                                </span>
                             
                         </div>
                         <div id="article_info_right">
@@ -146,7 +149,40 @@ MathJax = {"loader": {"load": ["output/svg"]}, "tex": {"inlineMath": [["$", "$"]
                     </div>
                     <div id="article_content">
                         
-                            <span id="blog_start"></span><p>EmoeSMU 是开源的小体积精密SMU（Source Measurement Unit）项目，目前正在规划中。</p>
+                            <blockquote>
+<p>硬件版本： 1.3.0<br />
+手册版本： 0.1.2<br />
+最后更新时间： 2024-11-16</p>
+</blockquote>
+<h1 id="EmoeDAQ%E7%89%B9%E6%80%A7%E6%A6%82%E8%A7%88">EmoeDAQ特性概览</h1>
+<ul>
+<li>测量端与数据接口全电气隔离，耐压1.5kV，真浮地测量</li>
+<li>2个全差分输入通道，双极性电压测量</li>
+<li>输出速率从0.5Hz至500Hz可调</li>
+<li>高达22bit无噪声分辨率（同量程范围下，6½数字万用表同等级指标）</li>
+<li>最大积分非线性误差（INL）为 <strong>±2ppm</strong>（4ppm-Peak to Peak）</li>
+<li>采样率500Hz时，THD&lt;-100dB（使用DAC11001B测试）</li>
+<li>支持内部失调实时补偿</li>
+<li>短期稳定性（24小时）等同于6½数字万用表</li>
+<li>支持用户自定义校准</li>
+<li>兼容标准SCPI指令集</li>
+</ul>
+<h1 id="EmoeDAQ%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8">EmoeDAQ典型应用</h1>
+<ul>
+<li>传感器数据采集</li>
+<li>精密电压测量与长时间观测</li>
+<li>1/f噪声测量</li>
+<li>低频交流信号精密分析</li>
+<li>自定义测试系统组件</li>
+</ul>
+<p>搭配Emoe R&amp;D提供的选件，可实现如下应用：</p>
+<ul>
+<li>精密RTD/热电偶温度测量（RTD/热电偶选件）</li>
+<li>双向低边电流测量（检流电阻选件）</li>
+<li>超宽动态范围I-V变换电流测量（与EmoeFemto搭配使用）</li>
+<li>超低噪声测量，nV-Meter（nV-Meter前端选件）</li>
+<li>多通道电信号扫描测量（扫描卡选件）</li>
+</ul>
 
                         
                     </div>
