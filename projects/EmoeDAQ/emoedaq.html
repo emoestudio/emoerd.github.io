@@ -7,10 +7,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <meta name="keywords" content="EmoeDAQ">
+    <meta name="keywords" content="">
     
     
-    <meta name="description" content="EmoeDAQ 用户手册">
+    <meta name="description" content="">
     
     <meta name="generator" content="teedoc">
     <meta name="theme" content="teedoc-plugin-theme-default">
@@ -46,10 +46,10 @@ MathJax = {"loader": {"load": ["output/svg"]}, "tex": {"inlineMath": [["$", "$"]
         
     
     
-    <title>EmoeDAQ 用户手册 - Emoe R&D</title>
+    <title>Emoe R&D</title>
     
     <script type="text/javascript">js_vars = {}</script>
-    <script type="text/javascript">metadata = {"tags": ["analog", "emoedaq"], "date": false, "update": [], "ts": 0, "author": "Floydfish", "brief": "", "cover": ""}</script>
+    <script type="text/javascript">metadata = {"tags": [], "date": null, "update": [], "ts": 0, "author": "", "brief": "", "cover": ""}</script>
 </head>
 
 
@@ -101,7 +101,11 @@ MathJax = {"loader": {"load": ["output/svg"]}, "tex": {"inlineMath": [["$", "$"]
                 <ul class="show">
 <li class="not_active with_link"><a href="/projects/EmoePulse/emoepulse.html"><span class="label">EmoePulse</span><span class=""></span></a></li>
 <li class="not_active with_link"><a href="/projects/EmoeNAP/emoenap.html"><span class="label">EmoeNAP</span><span class=""></span></a></li>
-<li class="active with_link"><a href="/projects/EmoeDAQ/emoedaq.html"><span class="label">EmoeDAQ</span><span class=""></span></a></li>
+<li class="active with_link"><a href="/projects/EmoeDAQ/emoedaq.html"><span class="label">EmoeDAQ</span><span class="sub_indicator"></span></a><ul class="show">
+<li class="not_active with_link"><a href="/projects/EmoeDAQ/emoedaq-spec.html"><span class="label">EmoeDAQ Datasheet</span><span class=""></span></a></li>
+<li class="not_active with_link"><a href="/projects/EmoeDAQ/emoedaq-manual.html"><span class="label">EmoeDAQ 编程参考手册</span><span class=""></span></a></li>
+</ul>
+</li>
 </ul>
 
             </div>
@@ -116,23 +120,23 @@ MathJax = {"loader": {"load": ["output/svg"]}, "tex": {"inlineMath": [["$", "$"]
                     <div id="article_head">
                         <div id="article_title">
                             
-                            <h1>EmoeDAQ 用户手册</h1>
+                            <h1></h1>
                             
                         </div>
                         <div id="article_tags">
                             <ul>
-                            
-                                <li>analog</li>
-                            
-                                <li>emoedaq</li>
                             
                             </ul>
                         </div>
                         <div id="article_info">
                         <div id="article_info_left">
                             <span class="article_author">
-                                Floydfish
+                                
                             </span>
+                            
+                                <span class="article_date" title="最后修改日期： 2025-03-01">
+                                    2025-03-01
+                                </span>
                             
                         </div>
                         <div id="article_info_right">
@@ -149,187 +153,7 @@ MathJax = {"loader": {"load": ["output/svg"]}, "tex": {"inlineMath": [["$", "$"]
                     </div>
                     <div id="article_content">
                         
-                            <h1 id="EmoeDAQ-%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C">EmoeDAQ 用户手册</h1>
-<p>EmoeDAQ是一款双通道、全差分输入的精密数据采集卡，具有±5V输入范围和24bit/32bit分辨率（24bit下，1 LSB等于0.6uV），同时具有极低的Noise Floor、极高的输入阻抗、低输入偏置电流，非常适合用于精密直流数据采集应用。</p>
-<blockquote>
-<p>硬件版本： 1.3.0<br />
-手册版本： 0.1.3<br />
-最后更新时间： 2024-12-16</p>
-</blockquote>
-<h2 id="%E7%89%A9%E7%90%86%E6%8E%A5%E5%8F%A3%E4%B8%8E%E6%A0%87%E8%AF%86">物理接口与标识</h2>
-<ul>
-<li>外壳尺寸100mm / 66mm / 27mm（长宽高），与EmoeNAP相同大小</li>
-<li>后面板：<ul>
-<li>Type-C，用于供电+VCP串口通信</li>
-<li>SCPI通信错误状态指示LED、内部温度状态指示LED</li>
-</ul>
-</li>
-<li>前面板：<ul>
-<li>8PIN 2.54mm间距插拔接线端子（KF-2.54），用于输入全差分模拟信号</li>
-<li>2*3PIN 2.54mm牛角座，用于内部低噪声稳压电源输出，对外I2C接口（连接选件）</li>
-<li>输入过载指示灯（差分电压大于5V时，亮红灯）</li>
-</ul>
-</li>
-<li>（板内留有SWD接口，方便用户更新固件（一点也不方便））</li>
-<li>电源<ul>
-<li>USB端口供电，电压为+5V±5%</li>
-</ul>
-</li>
-</ul>
-<h2 id="%E9%80%9A%E4%BF%A1%E4%B8%8E%E5%8D%8F%E8%AE%AE">通信与协议</h2>
-<ul>
-<li>通过USB-VCP（Virtual COM Port）与PC通信</li>
-<li>兼容标准SCPI指令集，同时DAQ部分兼容ADI的ADMX3652模块指令集</li>
-</ul>
-<h2 id="%E6%B5%8B%E9%87%8F%E7%AB%AF%E5%8F%82%E6%95%B0">测量端参数</h2>
-<ul>
-<li>测量端与供电端电气隔离（绝缘等级1.5kV），可实现真正的浮地测量</li>
-<li>每个输入端输入阻抗&gt;10GΩ，输入偏置电流＜300pA（+2.5V/-2.5V输入下）</li>
-<li>全差分输入测量范围为-5V至+5V（常用的单端测量接法是将IN-接GND，IN+接输入电压）</li>
-<li>输入端极限过载电压为9V，内部设有气体放电管及PTC熔丝用于过载保护（长时间过载将损坏前端，不建议在信号幅度超出输入范围的场合使用）</li>
-</ul>
-<h2 id="DAQ%E6%8E%A7%E5%88%B6%E6%8C%87%E4%BB%A4%E9%9B%86">DAQ控制指令集</h2>
-<p>EmoeDAQ采用SCPI指令集与上位机通过串口进行通讯。<br />
-DAQ的SCPI指令集可以分为4类，分别是：</p>
-<ul>
-<li>IEEE 488.2标准命令</li>
-<li>DAQ硬件配置命令</li>
-<li>DAQ采样控制命令</li>
-<li>DAQ系统命令</li>
-</ul>
-<p>SCPI指令集的简写为指定的单词开头（大写），比如 <code>CONFigure:VOLTage:DC:NPLCycles 10</code> 这句可以简写为 <code>CONF:VOLT:DC:NPLC 10</code>。</p>
-<h3 id="IEEE-488.2%E6%A0%87%E5%87%86%E5%91%BD%E4%BB%A4">IEEE 488.2标准命令</h3>
-<h4 id="%2ARST">*RST</h4>
-<ul>
-<li>格式：*<strong>RST</strong></li>
-<li>功能：复位EmoeDAQ，使其硬件重新初始化</li>
-<li>详细解释：接收到该命令后，DAQ会进行上电初始化操作。重新初始化后，DAQ进入出厂配置的默认工作状态</li>
-<li>示例：*RST</li>
-<li>返回值：&quot;system boot complete&quot;</li>
-</ul>
-<h4 id="%2AIDN%3F">*IDN?</h4>
-<ul>
-<li>格式：*<strong>IDN?</strong></li>
-<li>功能：查询仪器ID信息</li>
-<li>详细解释：接收到该命令后，设备返回仪器型号，以及软件版本号等信息</li>
-<li>示例：*IDN?</li>
-<li>返回值：仪器型号，以及软硬件版本号等信息</li>
-</ul>
-<h4 id="%2ACLS">*CLS</h4>
-<ul>
-<li>格式：*<strong>CLS</strong></li>
-<li>功能：清除错误信息</li>
-<li>详细解释：接收到该命令后，设备将清除累积的SCPI错误信息</li>
-<li>示例：*CLS</li>
-<li>返回值：无</li>
-</ul>
-<h3 id="DAQ%E9%87%87%E6%A0%B7%E6%8E%A7%E5%88%B6%E5%91%BD%E4%BB%A4">DAQ采样控制命令</h3>
-<h4 id="%E5%8D%95%E6%AC%A1%E6%B5%8B%E9%87%8F%E7%94%B5%E5%8E%8B">单次测量电压</h4>
-<ul>
-<li>格式：<strong>MEASure:VOLTage:DC? {1|2}</strong></li>
-<li>功能：测量指定通道的电压</li>
-<li>详细解释：用该命令触发DAQ对某一通道进行采样，采样的积分时间取决于目前的系统设置。支持AutoZero功能，<strong>需要注意，在开启AutoZero功能时，实际转换时间将加倍。</strong></li>
-<li>示例：MEASure:VOLTage:DC? 1 或 MEAS:VOLT:DC? 1</li>
-<li>返回值：对应通道的电压值</li>
-</ul>
-<h4 id="%E5%8D%95%E6%AC%A1%E6%B5%8B%E9%87%8F%E7%94%B5%E5%8E%8B%EF%BC%8C%E9%99%84%E5%B8%A6%E6%B8%A9%E5%BA%A6">单次测量电压，附带温度</h4>
-<ul>
-<li>格式：<strong>MEASure:VOLTage:DC:TEMPerature? {1|2}</strong></li>
-<li>功能：测量指定通道的电压，以及当前DAQ内部温度值</li>
-<li>详细解释：用该命令触发DAQ对某一通道进行采样，采样的积分时间取决于目前的系统设置。支持AutoZero功能，<strong>需要注意，在开启AutoZero功能时，实际转换时间将加倍。</strong>。输出电压的同时，还会输出DAQ内部的温度。该指令适合长期监测时使用，测量电压的同时测量DAQ内部温度</li>
-<li>示例：MEASure:VOLTage:DC:TEMPerature? 1 或 MEAS:VOLT:DC:TEMP? 1</li>
-<li>返回值：对应通道的电压值，以及当前DAQ内部温度，两个数据以','分隔</li>
-</ul>
-<h4 id="%E5%8D%95%E6%AC%A1%E6%B5%8B%E9%87%8F%E9%80%9A%E9%81%93%E9%97%B4%E7%94%B5%E5%8E%8B%E6%AF%94%E4%BE%8B">单次测量通道间电压比例</h4>
-<ul>
-<li>格式：<strong>MEASure:VOLTage:RATio? {1|2}</strong></li>
-<li>功能：测量2个通道间的电压值比例</li>
-<li>详细解释：用该命令触发DAQ进行单次采样，分别测量通道1和通道2的电压值（支持AutoZero），然后计算出2个通道间的电压比例。<strong>命令的参数为比例计算中的分子</strong> ——即当命令的参数为1时，返回比例值为 (Volt1 / Volt2)；当命令参数为2时，返回比例值为 (Volt2 / Volt1)</li>
-<li>示例：MEAS:VOLT:RATio? 1</li>
-<li>返回值：2个通道的电压比例值，保留8位小数</li>
-</ul>
-<h4 id="%E8%AE%BE%E7%BD%AE%E9%87%87%E6%A0%B7%E7%A7%AF%E5%88%86%E5%91%A8%E6%9C%9F">设置采样积分周期</h4>
-<ul>
-<li>格式：<strong>CONFigure:VOLTage:DC:NPLCycles {0.1|0.25|0.5|1|10|100}</strong></li>
-<li>功能：配置DAQ采样的积分时间 <strong>(Number of PowerLine Cycles)</strong></li>
-<li>详细解释：用该命令设置DAQ采样的积分时间，积分时间越长，输出数据的噪声越低，电压有效位数越高。积分时间计算是依据工频电源周期数决定的，比如NPLC=10时，积分10个工频周期。假设市电频率是50Hz，周期20ms，那么10NPLC=200ms，对应5SPS/s的数据更新速率。<strong>需要注意，在开启AutoZero功能时，实际采样率将减半。</strong></li>
-<li>示例：CONFigure:VOLTage:DC:NPLCycles 100</li>
-<li>返回值：无</li>
-</ul>
-<h4 id="%E6%9F%A5%E8%AF%A2%E9%87%87%E6%A0%B7%E7%A7%AF%E5%88%86%E5%91%A8%E6%9C%9F">查询采样积分周期</h4>
-<ul>
-<li>格式：<strong>CONFigure:VOLTage:DC:NPLCycles?</strong></li>
-<li>功能：查询DAQ采样的积分周期 <strong>(Number of PowerLine Cycles)</strong></li>
-<li>详细解释：用该命令查询DAQ采样的积分周期，积分周期越多，输出数据的噪声越低，电压有效位数越高。<strong>需要注意，在开启AutoZero功能时，实际采样率将减半。</strong></li>
-<li>示例：CONFigure:VOLTage:DC:NPLCycles?</li>
-<li>返回值：返回当前DAQ的采样积分周期</li>
-</ul>
-<h4 id="%E8%AE%BE%E7%BD%AEDAQ%E8%BF%9E%E7%BB%AD%E9%87%87%E6%A0%B7">设置DAQ连续采样</h4>
-<ul>
-<li>格式：<strong>CONFigure:CONTinuous:READ {1|2},{ON|OFF}</strong></li>
-<li>功能：设置DAQ的采样模式为单次（关闭CONT）或连续（开启CONT）</li>
-<li>详细解释：用该命令设置DAQ的采样模式，某通道在单次采样模式下，DAQ只有接收到触发信号时才会采样并输出数据（触发信号来自SCPI指令）；某通道在连续转换模式下，DAQ将自动按照设置的NPLC进行连续转换并输出数据。请注意，同时只有一个通道能被激活连续转换模式。如果需要2个通道同时连续转换，请使用扫描模式。</li>
-<li>示例：CONFigure:CONTinuous:READ 1,ON</li>
-<li>返回值：无，但如果激活连续转换，随后紧跟对应的DAQ采样的数据</li>
-</ul>
-<h4 id="%E8%AE%BE%E7%BD%AEDAQ%E6%89%AB%E6%8F%8F%E9%87%87%E6%A0%B7">设置DAQ扫描采样</h4>
-<ul>
-<li>格式：<strong>CONFigure:CONTinuous:SCAN {ON|OFF}</strong></li>
-<li>功能：设置DAQ的采样模式为扫描转换</li>
-<li>详细解释：用该命令设置DAQ为连续扫描转换模式，该模式下DAQ先对CH1进行转换，然后对CH2进行转换，最后依次、同时输出2个通道的电压值。</li>
-<li>示例：CONFigure:CONTinuous:SCAN ON</li>
-<li>返回值：无，但如果激活连续扫描转换，随后紧跟对应的DAQ采样的数据</li>
-</ul>
-<h4 id="%E8%AE%BE%E7%BD%AEAutoZero">设置AutoZero</h4>
-<ul>
-<li>格式：<strong>CONFigure:AutoZero:DC {ON|OFF}</strong></li>
-<li>功能：设置DAQ采样的自动校零功能</li>
-<li>详细解释：用该命令设置DAQ的自动校零功能，AutoZero开启时，DAQ先测量信号链自身的失调电压，然后再测量输入信号电压，最后输出失调矫正过的数据。该模式仅对单次转换、单通道连续转换适用，暂不支持扫描转换。开启AutoZero后，对应的转换速率减半。（<strong>该功能不能消除外部热电势影响</strong>）</li>
-<li>示例：CONFigure:AutoZero:DC ON</li>
-<li>返回值：无</li>
-</ul>
-<h3 id="DAQ%E7%A1%AC%E4%BB%B6%E9%85%8D%E7%BD%AE%E5%91%BD%E4%BB%A4">DAQ硬件配置命令</h3>
-<h4 id="%E8%AE%BE%E7%BD%AE%E9%80%9A%E4%BF%A1%E6%B3%A2%E7%89%B9%E7%8E%87%EF%BC%88%E4%BB%85%E4%BD%BF%E7%94%A8USART%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%9B%BA%E4%BB%B6%E6%94%AF%E6%8C%81%EF%BC%89">设置通信波特率（仅使用USART接口的固件支持）</h4>
-<ul>
-<li>格式：<strong>SYSTem:BAUDRATE:SET {9600|14400|19200|38400|57600|115200|230400|460800|921600|1500000}</strong></li>
-<li>功能：设置DAQ的串口波特率</li>
-<li>详细解释：用该命令设置DAQ的串口通信波特率，立刻生效，<strong>设置完成后需要切换到新波特率与DAQ通信</strong>。</li>
-<li>示例：SYSTem:BAUDRATE:SET 115200</li>
-<li>返回值：无</li>
-</ul>
-<h4 id="%E6%9F%A5%E8%AF%A2%E9%80%9A%E4%BF%A1%E6%B3%A2%E7%89%B9%E7%8E%87%EF%BC%88%E4%BB%85%E4%BD%BF%E7%94%A8USART%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%9B%BA%E4%BB%B6%E6%94%AF%E6%8C%81%EF%BC%89">查询通信波特率（仅使用USART接口的固件支持）</h4>
-<ul>
-<li>格式：<strong>SYSTem:BAUDRATE:SET?</strong></li>
-<li>功能：查询DAQ当前的串口波特率</li>
-<li>详细解释：用该命令查询DAQ的串口通信波特率。</li>
-<li>示例：SYSTem:BAUDRATE:SET?</li>
-<li>返回值：返回当前的串口波特率</li>
-</ul>
-<h4 id="%E6%9F%A5%E8%AF%A2DAQ%E7%B3%BB%E7%BB%9F%E8%AE%BE%E7%BD%AE">查询DAQ系统设置</h4>
-<ul>
-<li>格式：<strong>CONFigure:INFormation?</strong></li>
-<li>功能：查询DAQ当前的系统设置</li>
-<li>详细解释：用该命令查询DAQ的系统设置，包括 <strong>波特率（仅使用USART接口的固件支持）</strong>、NPLC频率、NPLC周期数、AutoZero是否开启</li>
-<li>示例：CONFIGURE:INFormation?</li>
-<li>返回值：波特率、NPLC频率、NPLC周期数、AutoZero是否开启</li>
-</ul>
-<h3 id="DAQ%E7%B3%BB%E7%BB%9F%E5%91%BD%E4%BB%A4">DAQ系统命令</h3>
-<h4 id="%E6%B5%8B%E9%87%8F%E6%9D%BF%E4%B8%8A%E6%B8%A9%E5%BA%A6">测量板上温度</h4>
-<ul>
-<li>格式：<strong>MEASure:TEMPerature?</strong></li>
-<li>功能：查询DAQ当前的系统设置</li>
-<li>详细解释：用该命令激活板上温度传感器，测量基准和ADC附近的温度值，返回给用户。</li>
-<li>示例：MEASure:TEMPerature?</li>
-<li>返回值：板上温度，保留3位小数</li>
-</ul>
-<h4 id="%E7%81%AF%E5%85%89%E6%8C%87%E7%A4%BA">灯光指示</h4>
-<ul>
-<li>格式：<strong>SYSTem:IDENtify</strong></li>
-<li>功能：闪烁后面板的ERR指示灯</li>
-<li>详细解释：闪烁后面板的ERR指示灯，用于指示当前收到指令的DAQ。在连接多个DAQ时用于区分DAQ。DAQ收到该命令后，背板上的蓝色ERR指示灯将闪烁3次。</li>
-<li>示例：SYSTem:IDEN</li>
-<li>返回值：无</li>
-</ul>
+                            <h1 id="EmoeDAQ%E9%AB%98%E7%B2%BE%E5%BA%A6%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E5%99%A8">EmoeDAQ高精度数据采集器</h1>
 
                         
                     </div>
@@ -344,6 +168,11 @@ DAQ的SCPI指令集可以分为4类，分别是：</p>
                         
                     </div>
                     <div id="next">
+                        
+                        <a href="/projects/EmoeDAQ/emoedaq-spec.html">
+                            <span class="label">EmoeDAQ Datasheet</span>
+                            <span class="icon"></span>
+                        </a>
                         
                     </div>
                 </div>
