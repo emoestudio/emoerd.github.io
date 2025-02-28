@@ -5,6 +5,12 @@ items:
     file: EmoeNAP/emoenap.md
 -   label: EmoeDAQ
     file: EmoeDAQ/emoedaq.md
+    items:
+    -   label: EmoeDAQ Datasheet
+        file: EmoeDAQ/emoedaq-spec.md
+    -   label: EmoeDAQ 编程参考手册
+        file: EmoeDAQ/emoedaq-manual.md
+    
 
 
 
