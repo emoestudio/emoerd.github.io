@@ -156,44 +156,48 @@ MathJax = {"loader": {"load": ["output/svg"]}, "tex": {"inlineMath": [["$", "$"]
                             <h1 id="EmoeDAQ-%E6%95%B0%E6%8D%AE%E6%89%8B%E5%86%8C">EmoeDAQ 数据手册</h1>
 <p>EmoeDAQ是一款双通道、全差分输入的精密数据采集卡，具有±5V输入范围和24bit/32bit分辨率（24bit下，1 LSB等于0.6uV），同时具有极低的Noise Floor、极高的输入阻抗、低输入偏置电流，非常适合用于精密直流数据采集应用。</p>
 <blockquote>
-<p>硬件版本： 1.4.0<br />
-手册版本： 0.1.3<br />
-最后更新时间： 2025-02-28</p>
+<p>硬件版本： REV 1.4<br />
+手册版本： 0.1.4<br />
+最后更新时间： 2025-03-03</p>
 </blockquote>
 <h2 id="EmoeDAQ%E7%89%B9%E6%80%A7%E6%A6%82%E8%A7%88">EmoeDAQ特性概览</h2>
 <ul>
-<li>测量端与数据接口全电气隔离，耐压1.5kV，真浮地测量</li>
+<li>测量端与数据接口全电气隔离，耐压1.5kV，浮地测量</li>
 <li>2个全差分输入通道，双极性电压测量</li>
-<li>输出速率从0.5Hz至500Hz可调</li>
+<li>采样积分周期从NPLC=100至NPLC=0.1可调(非连续可调)</li>
 <li>高达22bit无噪声分辨率（同量程范围下，6½数字万用表同等级指标）</li>
-<li>最大积分非线性误差（INL）为 <strong>±2ppm</strong>（4ppm-Peak to Peak）</li>
-<li>采样率500Hz时，THD&lt;-100dB（使用DAC11001B测试）</li>
+<li>校准后最大积分非线性误差（INL）为 <strong>±3.5ppm</strong>（7ppm-Peak to Peak，以34465A的10V档为参考）</li>
+<li>基准老化性能为25ppm/khr，出厂的DAQ均经过3周早期老化</li>
+<li>内部主动加热恒温设计，恒温温度一定范围内可调</li>
+<li>采样率500Hz时，THD&lt;-100dB</li>
 <li>支持内部失调实时补偿</li>
-<li>短期稳定性（24小时）等同于6½数字万用表</li>
+<li>短期稳定性（24小时）等同于6½数字万用表水平</li>
 <li>支持用户自定义校准</li>
 <li>兼容标准SCPI指令集</li>
 </ul>
 <h2 id="EmoeDAQ%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8">EmoeDAQ典型应用</h2>
 <ul>
-<li>传感器数据采集</li>
+<li>电压输出型传感器数据采集</li>
 <li>精密电压测量与长时间观测</li>
 <li>1/f噪声测量</li>
-<li>低频交流信号精密分析</li>
+<li>自定义设备的模拟采集核心</li>
+<li>极低频交流信号精密分析</li>
 <li>自定义测试系统组件</li>
 </ul>
 <p>搭配Emoe R&amp;D提供的开源选件，可实现如下应用：</p>
 <ul>
 <li>精密RTD/热电偶温度测量（RTD/热电偶选件）</li>
-<li>双向低边电流测量（检流电阻选件）</li>
+<li>双向高/低边电流测量（检流电阻、INA选件）</li>
 <li>超宽动态范围I-V变换电流测量（与EmoeFemto搭配使用）</li>
-<li>超低噪声测量，nV-Meter（nV-Meter前端选件）</li>
+<li>超低噪声小信号测量，nV-Meter（nV-Meter前端选件）</li>
 <li>多通道电信号扫描测量（扫描卡选件）</li>
 </ul>
+<p>更多选件仍在开发中，也欢迎在我们的github organization仓库发起讨论，一起开发新玩法。</p>
 <h2 id="%E7%89%A9%E7%90%86%E6%8E%A5%E5%8F%A3%E4%B8%8E%E6%A0%87%E8%AF%86">物理接口与标识</h2>
 <ul>
 <li>外壳尺寸100mm / 66mm / 27mm（长宽高），与EmoeNAP相同大小</li>
 <li>后面板：<ul>
-<li>Type-C，用于供电+VCP串口通信</li>
+<li>Type-C，用于供电+USB VCP串口通信</li>
 <li>SCPI通信错误状态指示LED、内部温度状态指示LED</li>
 </ul>
 </li>
@@ -203,7 +207,7 @@ MathJax = {"loader": {"load": ["output/svg"]}, "tex": {"inlineMath": [["$", "$"]
 <li>输入过载指示灯（差分电压大于5V时，亮红灯）</li>
 </ul>
 </li>
-<li>（板内留有SWD接口，方便用户更新固件（一点也不方便））</li>
+<li>（板内留有1.25mm-5P SWD接口，方便用户更新固件（一点也不方便））</li>
 <li>电源<ul>
 <li>USB端口供电，电压为+5V±5%</li>
 </ul>
@@ -221,6 +225,138 @@ MathJax = {"loader": {"load": ["output/svg"]}, "tex": {"inlineMath": [["$", "$"]
 <li>全差分输入测量范围为-5V至+5V（常用的单端测量接法是将IN-接GND，IN+接输入电压）</li>
 <li>输入端极限过载电压为9V，内部设有气体放电管及PTC熔丝用于过载保护（长时间过载将损坏前端，不建议在信号幅度超出输入范围的场合使用）</li>
 </ul>
+<h2 id="%E8%A7%84%E6%A0%BC%E8%A1%A8">规格表</h2>
+<table>
+<thead>
+<tr>
+  <th>指标</th>
+  <th></th>
+  <th>备注(测试条件)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>输入阻抗</td>
+  <td>10GΩ&gt;</td>
+  <td>输入信号在输入范围内</td>
+</tr>
+<tr>
+  <td>输入漏电流</td>
+  <td>&lt;200pA</td>
+  <td>输入信号在输入范围内</td>
+</tr>
+<tr>
+  <td>可用输入测量范围</td>
+  <td>-4.95V ~ +4.95V</td>
+  <td>可精确测量范围(受基准精度限制)</td>
+</tr>
+<tr>
+  <td>系统无噪声分辨率</td>
+  <td>22bit</td>
+  <td>EmoeDAQ-24版</td>
+</tr>
+<tr>
+  <td>系统非线性度(INL)</td>
+  <td>±3.5ppm</td>
+  <td>典型值,以34465A的10V档(标称1ppm)为基准</td>
+</tr>
+<tr>
+  <td>电压回读分辨率</td>
+  <td>提供小数点后8位数字，稳定至后6位(1uV)</td>
+  <td>NPLC=10，DAQ通电稳定后</td>
+</tr>
+<tr>
+  <td>基准老化性能</td>
+  <td>25ppm/1000 hours, 51ppm/4500hours</td>
+  <td>典型值，制造商保证</td>
+</tr>
+<tr>
+  <td>系统温度系数</td>
+  <td>TBD</td>
+  <td>TBD</td>
+</tr>
+<tr>
+  <td>24小时稳定性</td>
+  <td>TBD</td>
+  <td>TBD</td>
+</tr>
+<tr>
+  <td>CMRR</td>
+  <td>at DC: TBD</td>
+  <td>TBD</td>
+</tr>
+<tr>
+  <td></td>
+  <td>at 1kHz: TBD</td>
+  <td>TBD</td>
+</tr>
+<tr>
+  <td></td>
+  <td>at 1MHz: TBD</td>
+  <td>TBD</td>
+</tr>
+<tr>
+  <td>扫描转换通道间隔离度</td>
+  <td>at DC: TBD</td>
+  <td>TBD</td>
+</tr>
+<tr>
+  <td></td>
+  <td>at 10Hz: TBD</td>
+  <td>TBD</td>
+</tr>
+<tr>
+  <td></td>
+  <td>at 1kHz: TBD</td>
+  <td>TBD</td>
+</tr>
+<tr>
+  <td></td>
+  <td>at 1MHz: TBD</td>
+  <td>TBD</td>
+</tr>
+<tr>
+  <td>交流动态范围</td>
+  <td>&gt; 150dB</td>
+  <td>NPLC=0.1</td>
+</tr>
+<tr>
+  <td>推荐校准周期</td>
+  <td>3 month</td>
+  <td>3个月不掉电使用情况下</td>
+</tr>
+<tr>
+  <td>推荐恒温温度</td>
+  <td>35°C</td>
+  <td>室温25°C下</td>
+</tr>
+</tbody>
+</table>
+<h2 id="%E8%AF%A6%E7%BB%86%E6%B5%8B%E8%AF%95%E6%95%B0%E6%8D%AE">详细测试数据</h2>
+<p>测试仪器：</p>
+<ul>
+<li>Keysight 34465A</li>
+<li>Keysight 34420A</li>
+<li>Yokogawa 7651</li>
+<li>ADR1000 PWM Reference</li>
+<li>EmoeCalibrator</li>
+</ul>
+<h3 id="%E8%BE%93%E5%85%A5%E5%AF%B9%E5%9C%B0%E7%9F%AD%E6%8E%A5%E5%A4%B1%E8%B0%83%E4%B8%8E%E5%99%AA%E5%A3%B0">输入对地短接失调与噪声</h3>
+<p><img src="https://emoe-blog.oss-cn-hangzhou.aliyuncs.com/emoerd/EmoeDAQ/zero_offset.png" alt="zero_noise" /></p>
+<p>测试对象为EmoeDAQ-24，温度稳定后，读数仅有2个LSB的跳动。</p>
+<h3 id="%E4%B8%8A%E7%94%B5%E5%90%8E%E5%86%85%E9%83%A8%E6%B8%A9%E5%8D%87%E6%9B%B2%E7%BA%BF">上电后内部温升曲线</h3>
+<p><img src="https://emoe-blog.oss-cn-hangzhou.aliyuncs.com/emoerd/EmoeDAQ/temp_rise.png" alt="temp_rise" /></p>
+<p>测试时室温15度，上电后约15分钟达到设定的加热温度</p>
+<h3 id="%E4%BA%A4%E6%B5%81%E5%99%AA%E5%A3%B0">交流噪声</h3>
+<p><img src="https://emoe-blog.oss-cn-hangzhou.aliyuncs.com/emoerd/EmoeDAQ/AC_NoiseFloor.png" alt="ac_noise" /></p>
+<p>测试对象为EmoeDAQ-24，NPLC=0.1,采集50000个数据点后导出csv文件，使用numpy分析FFT。</p>
+<h3 id="%E6%A0%A1%E5%87%86%E5%90%8E%E9%9D%9E%E7%BA%BF%E6%80%A7%E5%BA%A6%E6%B5%8B%E8%AF%95">校准后非线性度测试</h3>
+<p><img src="https://emoe-blog.oss-cn-hangzhou.aliyuncs.com/emoerd/EmoeDAQ/inl_vs34420.png" alt="INL_Test" /></p>
+<p>使用7651作为DC源，34465A作为参考表对2个DAQ进行INL校准，校准后测试DAQ的INL曲线如上图(2个DAQ均为EmoeDAQ-24)</p>
+<h3 id="24%E5%B0%8F%E6%97%B6%E7%9F%AD%E6%9C%9F%E7%A8%B3%E5%AE%9A%E6%80%A7%E4%B8%8E%E5%A4%9A%E5%8D%95%E5%85%83%E4%B8%80%E8%87%B4%E6%80%A7%E6%B5%8B%E8%AF%95">24小时短期稳定性与多单元一致性测试</h3>
+<p><img src="https://emoe-blog.oss-cn-hangzhou.aliyuncs.com/emoerd/EmoeDAQ/daq_vs_34420_24h.png" alt="24h_test" /></p>
+<p>使用以ADR1000为基准的PWM基准源，输出1V为4个设备的公共输入，以34420的1V档位测量值为参考，测试3个DAQ的数据，3个DAQ中DAQ1内部恒温开启，DAQ2和3未开启。测试时间24小时。</p>
+<p>可以看出开启了内部恒温的DAQ1读数与34420的读数趋势几乎相同，只存在失调误差；DAQ2和DAQ3的一致性非常好，但是相对于34420的读数而言，稳定性不佳。可见使用温度控制的重要性。</p>
 
                         
                     </div>
