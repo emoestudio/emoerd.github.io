@@ -156,8 +156,8 @@ MathJax = {"loader": {"load": ["output/svg"]}, "tex": {"inlineMath": [["$", "$"]
                             <h1 id="EmoeDAQ-%E7%BC%96%E7%A8%8B%E5%8F%82%E8%80%83%E6%89%8B%E5%86%8C">EmoeDAQ 编程参考手册</h1>
 <blockquote>
 <p>硬件版本： 1.4.0<br />
-手册版本： 0.1.4<br />
-最后更新时间： 2025-03-03</p>
+手册版本： 1.0.5<br />
+最后更新时间： 2025-03-27</p>
 </blockquote>
 <h2 id="DAQ%E6%8E%A7%E5%88%B6%E6%8C%87%E4%BB%A4%E9%9B%86">DAQ控制指令集</h2>
 <p>EmoeDAQ采用SCPI指令集与上位机通过串口进行通讯。<br />
@@ -269,20 +269,44 @@ DAQ的SCPI指令集可以分为几类，分别是：</p>
 <li>示例：CONFIGURE:INFormation?</li>
 <li>返回值：波特率、NPLC频率、NPLC周期数、AutoZero是否开启</li>
 </ul>
+<h4 id="%E8%AE%BE%E7%BD%AE%E5%86%85%E9%83%A8%E5%8A%A0%E7%83%AD%E6%81%92%E6%B8%A9%E6%B8%A9%E5%BA%A6">设置内部加热恒温温度</h4>
+<ul>
+<li>格式：<strong>HEAT:TEMP {temperature}</strong></li>
+<li>功能：设置内部加热恒温温度</li>
+<li>详细解释：用该命令设置内部加热恒温温度，单位为摄氏度，温度范围为20-42度，<strong>该温度值会保存在EEPROM中</strong>，重启后仍然有效。<strong>推荐设置温度为35度</strong>，DAQ的出厂校准温度也是35度。</li>
+<li>示例：HEAT:TEMP 35</li>
+<li>返回值：提示温度设定值已更新</li>
+</ul>
+<h4 id="%E6%9F%A5%E8%AF%A2%E5%86%85%E9%83%A8%E5%8A%A0%E7%83%AD%E6%81%92%E6%B8%A9%E6%B8%A9%E5%BA%A6">查询内部加热恒温温度</h4>
+<ul>
+<li>格式：<strong>HEAT:TEMP?</strong></li>
+<li>功能：查询内部加热恒温温度</li>
+<li>详细解释：用该命令查询内部加热恒温温度，单位为摄氏度，温度范围为20-42度。</li>
+<li>示例：HEAT:TEMP?</li>
+<li>返回值：加热恒温温度设定值</li>
+</ul>
 <h3 id="DAQ%E7%B3%BB%E7%BB%9F%E5%91%BD%E4%BB%A4">DAQ系统命令</h3>
 <h4 id="%E6%B5%8B%E9%87%8F%E6%9D%BF%E4%B8%8A%E6%B8%A9%E5%BA%A6">测量板上温度</h4>
 <ul>
-<li>格式：<strong>MEASure:TEMPerature?</strong></li>
-<li>功能：查询DAQ当前的系统设置</li>
+<li>格式：<strong>MEASure:INTernal:TEMPerature?</strong></li>
+<li>功能：测量DAQ当前的板上温度</li>
 <li>详细解释：用该命令激活板上温度传感器，测量基准和ADC附近的温度值，返回给用户。</li>
-<li>示例：MEASure:TEMPerature?</li>
-<li>返回值：板上温度，保留3位小数</li>
+<li>示例：MEASure:INT:TEMP?</li>
+<li>返回值：板上温度，保留3-4位小数</li>
+</ul>
+<h4 id="%E6%B5%8B%E9%87%8F%E5%A4%96%E9%83%A8%E6%B8%A9%E5%BA%A6">测量外部温度</h4>
+<ul>
+<li>格式：<strong>MEASure:EXTernal:TEMPerature?</strong></li>
+<li>功能：测量外部连接的TMP117传感器温度数据</li>
+<li>详细解释：用该命令测量外部温度传感器，<strong>传感器的地址管脚必须连接到VCC</strong>（I2C地址固定为0x49，地址0x48被板上温度传感器占用），测量外部温度值，返回给用户。</li>
+<li>示例：MEASure:EXT:TEMP?</li>
+<li>返回值：外部温度，保留3-4位小数</li>
 </ul>
 <h4 id="%E7%81%AF%E5%85%89%E6%8C%87%E7%A4%BA">灯光指示</h4>
 <ul>
 <li>格式：<strong>SYSTem:IDENtify</strong></li>
 <li>功能：闪烁后面板的ERR指示灯</li>
-<li>详细解释：闪烁后面板的ERR指示灯，用于指示当前收到指令的DAQ。在连接多个DAQ时用于区分DAQ。DAQ收到该命令后，背板上的蓝色ERR指示灯将闪烁3次。</li>
+<li>详细解释：闪烁后面板的ERR指示灯，用于指示当前收到指令的DAQ。在连接多个DAQ时用于区分DAQ。DAQ收到该命令后，背板上的蓝色ERR指示灯将闪烁5次，间隔时间1秒。</li>
 <li>示例：SYSTem:IDEN</li>
 <li>返回值：无</li>
 </ul>
@@ -294,6 +318,14 @@ DAQ的SCPI指令集可以分为几类，分别是：</p>
 <li>示例：SYSTem:CAL:INL:SLOPE 1.00032855</li>
 <li>返回值：写入的增益值,并提示保存成功与否</li>
 </ul>
+<h4 id="%E6%9F%A5%E8%AF%A2%E7%94%A8%E6%88%B7%E5%A2%9E%E7%9B%8A%E6%A0%A1%E5%87%86%E7%B3%BB%E6%95%B0">查询用户增益校准系数</h4>
+<ul>
+<li>格式: SYSTem:CALibration:GAIN?</li>
+<li>功能：查询增益校准系数</li>
+<li>详细解释： 查询DAQ内部存储的增益校准系数</li>
+<li>示例：SYSTem:CAL:GAIN?</li>
+<li>返回值：1.00032855</li>
+</ul>
 <h4 id="%E7%94%A8%E6%88%B7%E5%A4%B1%E8%B0%83%E6%A0%A1%E5%87%86">用户失调校准</h4>
 <ul>
 <li>格式: SYSTem:CALibration:OFFSET {offset}</li>
@@ -302,11 +334,19 @@ DAQ的SCPI指令集可以分为几类，分别是：</p>
 <li>示例：SYSTem:CAL:INL:INT 0.00003882</li>
 <li>返回值：写入的失调值,并提示保存成功与否</li>
 </ul>
+<h4 id="%E6%9F%A5%E8%AF%A2%E7%94%A8%E6%88%B7%E5%A4%B1%E8%B0%83%E6%A0%A1%E5%87%86%E7%B3%BB%E6%95%B0">查询用户失调校准系数</h4>
+<ul>
+<li>格式: SYSTem:CALibration:OFFSET?</li>
+<li>功能：查询失调校准系数</li>
+<li>详细解释： 查询DAQ内部存储的失调校准系数</li>
+<li>示例：SYSTem:CAL:OFFSET?</li>
+<li>返回值：0.00003882</li>
+</ul>
 <h4 id="ADC%E7%B3%BB%E7%BB%9F%E6%A0%A1%E5%87%86">ADC系统校准</h4>
 <ul>
 <li>格式: SYSTem:CALibration:ADC</li>
 <li>功能：执行ADC系统校准</li>
-<li>详细解释： 该功能执行的是ADC片内自带的校准程序,分别给ADC输入通入0V和VREF,以此来计算ADC前面所有信号链的失调和增益误差.但此方法由于ADC的INL限制,效果有限.如果需要高精度,还是需要高位表+源来校准标定.该过程需要20秒的时间完成,且需要在DAQ充分预热且环境温度较稳定的情况下进行</li>
+<li>详细解释： 该功能执行的是ADC片内自带的校准程序,分别给ADC输入通入0V和VREF,以此来计算ADC前面所有信号链的失调和增益误差.但此方法由于ADC的INL限制,效果有限.如果需要高精度,还是需要高位表+源来校准标定.该过程需要约20秒的时间完成,且需要在DAQ充分预热且环境温度较稳定的情况下进行</li>
 <li>示例：SYSTem:CAL:ADC</li>
 <li>返回值：校准前的增益\失调寄存器,与校准后的增益\失调寄存器</li>
 </ul>
@@ -342,21 +382,13 @@ DAQ的SCPI指令集可以分为几类，分别是：</p>
 <li>示例：SYST:CAL:INF?</li>
 <li>返回值：有效校准数据,若未执行过校准/校准数据被擦除,则提示校准数据不存在</li>
 </ul>
-<h4 id="%E6%9F%A5%E8%AF%A2%E7%94%A8%E6%88%B7%E5%A2%9E%E7%9B%8A%E6%A0%A1%E5%87%86%E7%B3%BB%E6%95%B0">查询用户增益校准系数</h4>
+<h4 id="%E7%B3%BB%E7%BB%9F%E5%9B%BA%E4%BB%B6%E5%8D%87%E7%BA%A7">系统固件升级</h4>
 <ul>
-<li>格式: SYSTem:CALibration:GAIN?</li>
-<li>功能：查询增益校准系数</li>
-<li>详细解释： 查询DAQ内部存储的增益校准系数</li>
-<li>示例：SYSTem:CAL:GAIN?</li>
-<li>返回值：1.00032855</li>
-</ul>
-<h4 id="%E6%9F%A5%E8%AF%A2%E7%94%A8%E6%88%B7%E5%A4%B1%E8%B0%83%E6%A0%A1%E5%87%86%E7%B3%BB%E6%95%B0">查询用户失调校准系数</h4>
-<ul>
-<li>格式: SYSTem:CALibration:OFFSET?</li>
-<li>功能：查询失调校准系数</li>
-<li>详细解释： 查询DAQ内部存储的失调校准系数</li>
-<li>示例：SYSTem:CAL:OFFSET?</li>
-<li>返回值：0.00003882</li>
+<li>格式: SYSTem:Update</li>
+<li>功能：使DAQ进入升级模式</li>
+<li>详细解释： 该命令将解除DAQ初始化，使其进入DFU(Device Firmware Upgrade)模式。在此模式下，通过STM32CubeProgrammer连接DAQ，可以对其进行固件升级。</li>
+<li>示例：SYSTem:Update</li>
+<li>返回值：无，命令执行后，USB端口立刻断开连接。</li>
 </ul>
 <h2 id="DAQ%E6%A0%A1%E5%87%86%E5%8E%9F%E7%90%86">DAQ校准原理</h2>
 <p>请参考Emoe上的文章 <strong><a href="https://www.emoe.xyz/emoedaq-design-2/#5"  target="_blank">EmoeDAQ-高精度数据采集器-下篇</a></strong> 中的第五节-校准原理</p>
