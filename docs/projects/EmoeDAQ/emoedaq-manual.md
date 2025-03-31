@@ -55,6 +55,8 @@ DAQ的SCPI指令集可以分为几类，分别是：
 
 SCPI指令集的简写为指定的单词开头（大写），比如 `CONFigure:VOLTage:DC:NPLCycles 10` 这句可以简写为 `CONF:VOLT:DC:NPLC 10`。
 
+同时，SCPI标准指定的换行符为 LF(\n)。部分串口助手软件中默认的换行符为\r\n，推荐更改为 LF(\n)。
+
 
 ### IEEE 488.2标准命令
 
