@@ -169,6 +169,12 @@ MathJax = {"loader": {"load": ["output/svg"]}, "tex": {"inlineMath": [["$", "$"]
 <li>差分测量</li>
 </ul>
 <p>将GND连接到待测设备的GND，IN+和IN-分别接入待测设备的差分输出</p>
+<ul>
+<li>输入短路测试</li>
+</ul>
+<p>将CH1的IN+、IN-与GND连接（4个接线端子全部短接）</p>
+<h3 id="%E8%BF%9E%E6%8E%A5%E9%80%89%E4%BB%B6">连接选件</h3>
+<p>使用牛角座+排线插头连接外部选件，如果需要测量外部温度，需要连接外部测温传感器TMP117，TMP117的ADDR必须连接到VCC（对应I2C地址0x49，0x48被板上温度传感器占用）</p>
 <h3 id="%E8%BF%9E%E6%8E%A5%E7%94%B5%E8%84%91">连接电脑</h3>
 <ol>
 <li>请确保PC的USB端口供电能力足够，不推荐连接到没有外部供电的劣质拓展坞上。</li>
@@ -178,7 +184,7 @@ MathJax = {"loader": {"load": ["output/svg"]}, "tex": {"inlineMath": [["$", "$"]
 </ol>
 <h3 id="%E8%BF%9E%E6%8E%A5%E7%A4%BA%E4%BE%8B%E4%B8%8A%E4%BD%8D%E6%9C%BA">连接示例上位机</h3>
 <ol>
-<li>下载EmoeDAQ上位机</li>
+<li>下载EmoeDAQ <strong><a href="https://github.com/emoestudio/EmoeDAQ"  target="_blank">上位机</a></strong>(Release界面，若无法访问github，可在R&amp;D交流群群文件获取)</li>
 <li>运行，选择端口号以及波特率，点击连接</li>
 <li>启动CHx为单通道连续测量，启动扫描为2个输入通道切换扫描测量</li>
 <li>设置NPLC可改变数据更新速率，但也会改变DAQ的测量本底噪声。NPLC越高，噪声越低。</li>
@@ -235,7 +241,8 @@ DAQ的SCPI指令集可以分为几类，分别是：</p>
 <li>示例：MEASure:VOLTage:DC? 1 或 MEAS:VOLT:DC? 1</li>
 <li>返回值：对应通道的电压值</li>
 </ul>
-<h4 id="%E5%8D%95%E6%AC%A1%E6%B5%8B%E9%87%8F%E7%94%B5%E5%8E%8B%EF%BC%8C%E9%99%84%E5%B8%A6%E5%86%85%E9%83%A8%E6%B8%A9%E5%BA%A6">单次测量电压，附带内部温度</h4>
+<h4 id="%E5%8D%95%E6%AC%A1%E6%B5%8B%E9%87%8F%E7%94%B5%E5%8E%8B%EF%BC%8C%E9%99%84%E5%B8%A6%E5%A4%96%E9%83%A8%E6%B8%A9%E5%BA%A6">单次测量电压，附带外部温度</h4>
+<p><strong>该指令需要连接外部测温传感器TMP11，否则温度数据为0</strong></p>
 <ul>
 <li>格式：<strong>MEASure:VOLTage:DC:TEMPerature? {1|2}</strong></li>
 <li>功能：测量指定通道的电压，以及当前DAQ内部温度值</li>
@@ -284,6 +291,7 @@ DAQ的SCPI指令集可以分为几类，分别是：</p>
 <li>返回值：无，但如果激活连续扫描转换，随后紧跟对应的DAQ采样的数据</li>
 </ul>
 <h4 id="%E8%AE%BE%E7%BD%AEAutoZero">设置AutoZero</h4>
+<p>AZ功能仅能消除内部信号链的失调误差，内部采用恒温设计后，AutoZero功能可以不使用。</p>
 <ul>
 <li>格式：<strong>CONFigure:AutoZero:DC {ON|OFF}</strong></li>
 <li>功能：设置DAQ采样的自动校零功能</li>
@@ -437,7 +445,8 @@ DAQ的SCPI指令集可以分为几类，分别是：</p>
 <h3 id="%E6%8E%A8%E8%8D%90%E6%A0%A1%E5%87%86%E6%B5%81%E7%A8%8B-%E8%87%AA%E5%8A%A8%E7%89%88">推荐校准流程-自动版</h3>
 <p>如果有可连接至PC的DMM和源表，且能被VISA识别到，可以使用python来完成自动化校准。<br />
 🐟使用的是 Keysight 34465A+横河7651，DMM使用USB连接，7651使用GPIB连接。</p>
-<ol>
+<ol start="0">
+<li>将DAQ连接到电脑，发送指令 <strong>HEAT:TEMP 35</strong> 设定内部恒温温度，此数值将作为校准时的温度保存到校准数据中。</li>
 <li>将源表输出连接到DAQ的CH1输入端（DAQ的INN接地，INP连接源表输出正极）和DMM的电压输入端</li>
 <li>使用稳定且足功率的USB端口连接DAQ，通电静置至少半小时让DAQ和其他仪器充分稳定，DMM与源表同步上电静置。</li>
 <li>测试VISA连接DMM与源表，能否正常通信，根据自己的设备修改相应的SCPI控制指令</li>
@@ -448,7 +457,8 @@ DAQ的SCPI指令集可以分为几类，分别是：</p>
 <p>如果上述自动校准条件不具备，可以使用手动校准的方式。<strong>不过需注意，无论是哪种校准方式都需要一台高位DMM，以及一个低噪声且稳定可调的电压源。</strong></p>
 <p>为达到最佳校准精度，推荐使用多点校准拟合的方式来得出增益与失调系数。<br />
 DAQ的手动校准分为2步，分别是ADC系统校准和用户自定义比对参考表校准。下面给出一个示例：</p>
-<ol>
+<ol start="0">
+<li>将DAQ连接到电脑，发送指令 <strong>HEAT:TEMP 35</strong> 设定内部恒温温度，此数值将作为校准时的温度保存到校准数据中。</li>
 <li>使用稳定且足功率的USB端口连接DAQ，通电静置至少半小时让DAQ和其他仪器充分稳定，DMM与源表同步上电静置。</li>
 <li>将DAQ连接串口助手，手动发送指令 <strong>&quot;SYST:CAL:ADC&quot;</strong> 执行ADC的系统校准，等待20秒输出结果；</li>
 <li>手动发送指令 <strong>&quot;SYST:CAL:DATE 2025,1,14&quot;</strong> ，写入校准的日期</li>
