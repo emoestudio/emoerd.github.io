@@ -31,7 +31,7 @@ tags: analog, emoedaq
 
 ### 连接示例上位机
 
-1. 下载EmoeDAQ上位机   
+1. 下载EmoeDAQ **[上位机](https://github.com/emoestudio/EmoeDAQ)**(Release界面，若无法访问github，可在R&D交流群群文件获取)   
 2. 运行，选择端口号以及波特率，点击连接  
 3. 启动CHx为单通道连续测量，启动扫描为2个输入通道切换扫描测量  
 4. 设置NPLC可改变数据更新速率，但也会改变DAQ的测量本底噪声。NPLC越高，噪声越低。  
