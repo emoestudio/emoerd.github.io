@@ -236,12 +236,12 @@ MathJax = {"loader": {"load": ["output/svg"]}, "tex": {"inlineMath": [["$", "$"]
 <tbody>
 <tr>
   <td>输入阻抗</td>
-  <td>10GΩ&gt;</td>
-  <td>输入信号在输入范围内</td>
+  <td>大于10GΩ</td>
+  <td>任意一端,输入信号在输入范围内</td>
 </tr>
 <tr>
   <td>输入漏电流</td>
-  <td>&lt;200pA</td>
+  <td>&lt;300pA</td>
   <td>输入信号在输入范围内</td>
 </tr>
 <tr>
@@ -251,13 +251,18 @@ MathJax = {"loader": {"load": ["output/svg"]}, "tex": {"inlineMath": [["$", "$"]
 </tr>
 <tr>
   <td>系统无噪声分辨率</td>
-  <td>22bit</td>
-  <td>EmoeDAQ-24版</td>
+  <td>22.5bit</td>
+  <td>EmoeDAQ-24,典型值</td>
+</tr>
+<tr>
+  <td></td>
+  <td>25.5bit</td>
+  <td>EmoeDAQ-32,典型值</td>
 </tr>
 <tr>
   <td>系统非线性度(INL)</td>
   <td>±3.5ppm</td>
-  <td>典型值,以34465A的10V档(标称1ppm)为基准</td>
+  <td>典型值,以34465A的10V档(标称1ppm)为参考</td>
 </tr>
 <tr>
   <td>电压回读分辨率</td>
@@ -306,8 +311,8 @@ MathJax = {"loader": {"load": ["output/svg"]}, "tex": {"inlineMath": [["$", "$"]
 </tr>
 <tr>
   <td>推荐校准周期</td>
-  <td>3 month</td>
-  <td>3个月不掉电使用情况下</td>
+  <td>6 month</td>
+  <td>不掉电使用情况下</td>
 </tr>
 <tr>
   <td>推荐恒温温度</td>
@@ -341,6 +346,10 @@ MathJax = {"loader": {"load": ["output/svg"]}, "tex": {"inlineMath": [["$", "$"]
 <p><img src="https://emoe-blog.oss-cn-hangzhou.aliyuncs.com/emoerd/EmoeDAQ/daq_vs_34420_24h.png" alt="24h_test" /></p>
 <p>使用以ADR1000为基准的PWM基准源，输出1V为4个设备的公共输入，以34420的1V档位测量值为参考，测试3个DAQ的数据，3个DAQ中DAQ1内部恒温开启，DAQ2和3未开启。测试时间24小时。</p>
 <p>可以看出开启了内部恒温的DAQ1读数与34420的读数趋势几乎相同，只存在失调误差；DAQ2和DAQ3的一致性非常好，但是相对于34420的读数而言，稳定性不佳。可见使用温度控制的重要性。</p>
+<h1 id="Change-Log">Change Log</h1>
+<ul>
+<li>2025.04.12 修复测试数据部分描述bug</li>
+</ul>
 
                         
                     </div>

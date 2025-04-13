@@ -155,8 +155,9 @@ MathJax = {"loader": {"load": ["output/svg"]}, "tex": {"inlineMath": [["$", "$"]
                         
                             <h1 id="EmoeDAQ-%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C">EmoeDAQ 用户手册</h1>
 <blockquote>
-<p>硬件版本： 1.4.0<br />
-手册版本： 1.0.5<br />
+<p>硬件版本: 1.4.0<br />
+手册版本: 1.0.5<br />
+固件版本:<br />
 最后更新时间： 2025-03-27</p>
 </blockquote>
 <h2 id="%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B%E6%8C%87%E5%8D%97">快速开始指南</h2>
@@ -172,14 +173,14 @@ MathJax = {"loader": {"load": ["output/svg"]}, "tex": {"inlineMath": [["$", "$"]
 <ul>
 <li>输入短路测试</li>
 </ul>
-<p>将CH1的IN+、IN-与GND连接（4个接线端子全部短接）</p>
+<p>将CH1的IN+、IN-与GND连接（一个通道上的4个接线端子全部短接）</p>
 <h3 id="%E8%BF%9E%E6%8E%A5%E9%80%89%E4%BB%B6">连接选件</h3>
 <p>使用牛角座+排线插头连接外部选件，如果需要测量外部温度，需要连接外部测温传感器TMP117，TMP117的ADDR必须连接到VCC（对应I2C地址0x49，0x48被板上温度传感器占用）</p>
 <h3 id="%E8%BF%9E%E6%8E%A5%E7%94%B5%E8%84%91">连接电脑</h3>
 <ol>
-<li>请确保PC的USB端口供电能力足够，不推荐连接到没有外部供电的劣质拓展坞上。</li>
+<li>请确保PC的USB端口供电能力足够，<strong>不推荐连接到没有外部供电的劣质拓展坞上</strong>，此类拓展坞可能在VBUS上串联二极管，导致USB端口电压低于5V。</li>
 <li>使用USB-TypeC数据线连接PC和DAQ，查看电脑的USB设备列表，应有<strong>USB串行设备(COM*)</strong></li>
-<li>打开串口助手，选择DAQ的端口号，波特率可从9600至921600之间随意选择，打开端口，发送命令：<em>IDN?（</em><em>附带换行，换行符为\n</em>*），查询设备型号以及版本号</li>
+<li>打开串口助手，选择DAQ的端口号，波特率可从9600至1500000之间随意选择，打开端口，发送命令：<em>IDN?（</em><em>附带换行，换行符为\n</em>*），查询设备型号以及版本号</li>
 <li>发送命令：MEAS:VOLT:DC? 1 （<strong>附带换行，换行符为\n</strong>）以查询CH1的输入电压值。注意冒号为英文字符，切勿使用中文输入法。</li>
 </ol>
 <h3 id="%E8%BF%9E%E6%8E%A5%E7%A4%BA%E4%BE%8B%E4%B8%8A%E4%BD%8D%E6%9C%BA">连接示例上位机</h3>
@@ -187,7 +188,7 @@ MathJax = {"loader": {"load": ["output/svg"]}, "tex": {"inlineMath": [["$", "$"]
 <li>下载EmoeDAQ <strong><a href="https://github.com/emoestudio/EmoeDAQ"  target="_blank">上位机</a></strong>(Release界面，若无法访问github，可在R&amp;D交流群群文件获取)</li>
 <li>运行，选择端口号以及波特率，点击连接</li>
 <li>启动CHx为单通道连续测量，启动扫描为2个输入通道切换扫描测量</li>
-<li>设置NPLC可改变数据更新速率，但也会改变DAQ的测量本底噪声。NPLC越高，噪声越低。</li>
+<li>设置NPLC可改变数据更新速率，但也会改变DAQ的测量本底噪声。NPLC越高，积分时间越长，噪声越低。</li>
 <li>波形窗口视图可开启直方图和FFT分析，但需要注意直方图需要一定数据点积累后才能显示，FFT分析需要采集到足够多的数据点</li>
 <li>FFT设置可调整FFT窗函数、FFT数据点数、以及幅度范围</li>
 <li>显示控制窗口可控制采样的波形长度，默认为1w点，最大可调整至10w点。Y轴范围默认开启自动调节，也可手动指定</li>
@@ -242,11 +243,11 @@ DAQ的SCPI指令集可以分为几类，分别是：</p>
 <li>返回值：对应通道的电压值</li>
 </ul>
 <h4 id="%E5%8D%95%E6%AC%A1%E6%B5%8B%E9%87%8F%E7%94%B5%E5%8E%8B%EF%BC%8C%E9%99%84%E5%B8%A6%E5%A4%96%E9%83%A8%E6%B8%A9%E5%BA%A6">单次测量电压，附带外部温度</h4>
-<p><strong>该指令需要连接外部测温传感器TMP11，否则温度数据为0</strong></p>
+<p><strong>该指令需要连接外部测温传感器TMP117，否则温度数据为0（TMP117为ti生产的版本，敏源传感生产的M117、T117等不可替代TMP117）</strong></p>
 <ul>
 <li>格式：<strong>MEASure:VOLTage:DC:TEMPerature? {1|2}</strong></li>
 <li>功能：测量指定通道的电压，以及当前DAQ内部温度值</li>
-<li>详细解释：用该命令触发DAQ对某一通道进行采样，采样的积分时间取决于目前的系统设置。支持AutoZero功能，<strong>需要注意，在开启AutoZero功能时，实际转换时间将加倍。</strong>。输出电压的同时，还会输出DAQ内部的温度。该指令适合长期监测时使用，测量电压的同时测量DAQ内部温度</li>
+<li>详细解释：用该命令触发DAQ对某一通道进行采样，采样的积分时间取决于目前的系统设置。支持AutoZero功能，<strong>需要注意，在开启AutoZero功能时，实际转换时间将加倍。</strong>。输出电压的同时，还会输出DAQ内部的温度。该指令适合长期监测时使用，测量电压的同时测量外部环境温度，供分析器件温度特性使用</li>
 <li>示例：MEASure:VOLTage:DC:TEMPerature? 1 或 MEAS:VOLT:DC:TEMP? 1</li>
 <li>返回值：对应通道的电压值，以及当前DAQ内部温度，两个数据以','分隔</li>
 </ul>
@@ -259,10 +260,13 @@ DAQ的SCPI指令集可以分为几类，分别是：</p>
 <li>返回值：2个通道的电压比例值，保留8位小数</li>
 </ul>
 <h4 id="%E8%AE%BE%E7%BD%AE%E9%87%87%E6%A0%B7%E7%A7%AF%E5%88%86%E5%91%A8%E6%9C%9F">设置采样积分周期</h4>
+<blockquote>
+<p>todo: 增加NPLC=5、NPLC=2.5的设定，下个版本固件和上位机更新</p>
+</blockquote>
 <ul>
 <li>格式：<strong>CONFigure:VOLTage:DC:NPLCycles {0.1|0.25|0.5|1|10|100}</strong></li>
 <li>功能：配置DAQ采样的积分时间 <strong>(Number of PowerLine Cycles)</strong></li>
-<li>详细解释：用该命令设置DAQ采样的积分时间，积分时间越长，输出数据的噪声越低，电压有效位数越高。积分时间计算是依据工频电源周期数决定的，比如NPLC=10时，积分10个工频周期。假设市电频率是50Hz，周期20ms，那么10NPLC=200ms，对应5SPS/s的数据更新速率。<strong>需要注意，在开启AutoZero功能时，实际采样率将减半。</strong></li>
+<li>详细解释：用该命令设置DAQ采样的积分时间，积分时间越长，输出数据的噪声越低，电压有效位数越高。积分时间计算是依据工频电源周期数决定的，比如NPLC=10时，积分10个工频周期。默认市电频率是50Hz，周期20ms，那么10NPLC=200ms，对应5SPS/s的数据更新速率。<strong>需要注意，在开启AutoZero功能时，实际采样率将减半。</strong></li>
 <li>示例：CONFigure:VOLTage:DC:NPLCycles 100</li>
 <li>返回值：无</li>
 </ul>
@@ -354,7 +358,7 @@ DAQ的SCPI指令集可以分为几类，分别是：</p>
 <li>格式: SYSTem:CALibration:GAIN {gain}</li>
 <li>功能：写入DAQ的系统增益,并保存</li>
 <li>详细解释： 写入DAQ的系统增益,该增益是线性回归拟合校准得出的增益误差,在DAQ内部参与电压转换的计算,补偿DAQ的系统增益误差</li>
-<li>示例：SYSTem:CAL:INL:SLOPE 1.00032855</li>
+<li>示例：SYSTem:CAL:GAIN 1.00032855</li>
 <li>返回值：写入的增益值,并提示保存成功与否</li>
 </ul>
 <h4 id="%E6%9F%A5%E8%AF%A2%E7%94%A8%E6%88%B7%E5%A2%9E%E7%9B%8A%E6%A0%A1%E5%87%86%E7%B3%BB%E6%95%B0">查询用户增益校准系数</h4>
@@ -370,7 +374,7 @@ DAQ的SCPI指令集可以分为几类，分别是：</p>
 <li>格式: SYSTem:CALibration:OFFSET {offset}</li>
 <li>功能：写入DAQ的系统失调误差,并保存</li>
 <li>详细解释：  写入DAQ的系统失调误差,该增益是线性回归拟合校准得出的失调误差,在DAQ内部参与电压转换的计算,补偿DAQ的系统失调误差</li>
-<li>示例：SYSTem:CAL:INL:INT 0.00003882</li>
+<li>示例：SYSTem:CAL:OFFSET 0.00003882</li>
 <li>返回值：写入的失调值,并提示保存成功与否</li>
 </ul>
 <h4 id="%E6%9F%A5%E8%AF%A2%E7%94%A8%E6%88%B7%E5%A4%B1%E8%B0%83%E6%A0%A1%E5%87%86%E7%B3%BB%E6%95%B0">查询用户失调校准系数</h4>
@@ -391,7 +395,7 @@ DAQ的SCPI指令集可以分为几类，分别是：</p>
 </ul>
 <h4 id="%E5%86%99%E5%85%A5%E6%A0%A1%E5%87%86%E6%97%A5%E6%9C%9F">写入校准日期</h4>
 <ul>
-<li>格式: SYSTem:CALibration:DATE</li>
+<li>格式: SYSTem:CALibration:DATE {yyyy},{mm},{dd}</li>
 <li>功能：写入校准日期</li>
 <li>详细解释： 写入校准日期,格式是: yyyy,mm,dd</li>
 <li>示例：SYST:CAL:DATE 1919,8,10</li>
@@ -422,6 +426,9 @@ DAQ的SCPI指令集可以分为几类，分别是：</p>
 <li>返回值：有效校准数据,若未执行过校准/校准数据被擦除,则提示校准数据不存在</li>
 </ul>
 <h4 id="%E7%B3%BB%E7%BB%9F%E5%9B%BA%E4%BB%B6%E5%8D%87%E7%BA%A7">系统固件升级</h4>
+<blockquote>
+<p>需要安装STM32 USB DFU驱动，建议直接安装STM32CubeProgrammer，以方便升级。</p>
+</blockquote>
 <ul>
 <li>格式: SYSTem:Update</li>
 <li>功能：使DAQ进入升级模式</li>
@@ -448,7 +455,7 @@ DAQ的SCPI指令集可以分为几类，分别是：</p>
 <ol start="0">
 <li>将DAQ连接到电脑，发送指令 <strong>HEAT:TEMP 35</strong> 设定内部恒温温度，此数值将作为校准时的温度保存到校准数据中。</li>
 <li>将源表输出连接到DAQ的CH1输入端（DAQ的INN接地，INP连接源表输出正极）和DMM的电压输入端</li>
-<li>使用稳定且足功率的USB端口连接DAQ，通电静置至少半小时让DAQ和其他仪器充分稳定，DMM与源表同步上电静置。</li>
+<li>使用稳定且足功率的USB端口连接DAQ，通电静置至少2小时让DAQ和其他仪器充分稳定，DMM与源表同步上电静置。</li>
 <li>测试VISA连接DMM与源表，能否正常通信，根据自己的设备修改相应的SCPI控制指令</li>
 <li>修改校准程序的校准日期等内容，运行自动化校准程序，完成校准</li>
 <li>打开串口助手，连接DAQ，查询校准结果是否正确</li>
@@ -459,7 +466,7 @@ DAQ的SCPI指令集可以分为几类，分别是：</p>
 DAQ的手动校准分为2步，分别是ADC系统校准和用户自定义比对参考表校准。下面给出一个示例：</p>
 <ol start="0">
 <li>将DAQ连接到电脑，发送指令 <strong>HEAT:TEMP 35</strong> 设定内部恒温温度，此数值将作为校准时的温度保存到校准数据中。</li>
-<li>使用稳定且足功率的USB端口连接DAQ，通电静置至少半小时让DAQ和其他仪器充分稳定，DMM与源表同步上电静置。</li>
+<li>使用稳定且足功率的USB端口连接DAQ，通电静置至少2小时让DAQ和其他仪器充分稳定，DMM与源表同步上电静置。</li>
 <li>将DAQ连接串口助手，手动发送指令 <strong>&quot;SYST:CAL:ADC&quot;</strong> 执行ADC的系统校准，等待20秒输出结果；</li>
 <li>手动发送指令 <strong>&quot;SYST:CAL:DATE 2025,1,14&quot;</strong> ，写入校准的日期</li>
 <li>手动发送指令 <strong>&quot;SYST:CAL:STORE&quot;</strong> ，保存ADC系统校准数据</li>
@@ -470,6 +477,11 @@ DAQ的手动校准分为2步，分别是ADC系统校准和用户自定义比对�
 <li>得到校准系数后，将DAQ连接串口助手，通过校准指令 <strong>&quot;SYST:CAL:GAIN 1.00002243123&quot;、&quot;SYST:CAL:OFFSET 0.000004232&quot;</strong>手动写入DAQ（此处数字仅示例）</li>
 <li>发送指令 <strong>&quot;SYST:CAL:INF?&quot;</strong> 查询校准数据是否正确</li>
 </ol>
+<h1 id="Change-Log">Change Log</h1>
+<ul>
+<li>2025.04.02 修改NPLC部分描述问题</li>
+<li>2025.04.12 修改部分指令描述问题，增加todo功能（挖坑</li>
+</ul>
 
                         
                     </div>
