@@ -154,15 +154,14 @@ MathJax = {"loader": {"load": ["output/svg"]}, "tex": {"inlineMath": [["$", "$"]
                     <div id="article_content">
                         
                             <h1 id="EmoeNAP-%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C">EmoeNAP 用户手册</h1>
-<p><img src="https://emoe-blog.oss-cn-hangzhou.aliyuncs.com/emoerd/emoenap/P2.jpg" alt="EmoeNAP" /></p>
+<p><img src="https://emoe-blog.oss-cn-hangzhou.aliyuncs.com/emoerd/emoenap/EmoeNAP-3.jpg" alt="EmoeNAP-3" /></p>
 <blockquote>
-<p>硬件版本： 1.1<br />
-手册版本： 1.0</p>
+<p>硬件版本： 1.1.4<br />
+手册版本： 1.1</p>
 </blockquote>
 <h2 id="%E8%B4%A7%E5%93%81%E6%B8%85%E5%8D%95">货品清单</h2>
 <ul>
 <li>EmoeNAP主机一台</li>
-<li>EmoeNAP CalKit PCBA一套</li>
 <li>SMA短路帽一个（安装在输入端口上）</li>
 <li>SMA防尘帽3个（安装在输出端口上）</li>
 </ul>
@@ -171,30 +170,25 @@ MathJax = {"loader": {"load": ["output/svg"]}, "tex": {"inlineMath": [["$", "$"]
 <center>
 <img src="https://emoe-blog.oss-cn-hangzhou.aliyuncs.com/emoerd/Common%20Resource/erd_qrcode.jpg" alt="baidu" width=50% border="0"/>
 </center>
+<p>也可直接访问我们的淘宝店铺，有库存即可下单：<a href="https://shop404388371.taobao.com/?spm=pc_detail.29232929/evo365560b447259.shop_block.dshopinfo.103e7dd6y8VG55"  target="_blank">https://shop404388371.taobao.com/?spm=pc_detail.29232929/evo365560b447259.shop_block.dshopinfo.103e7dd6y8VG55</a></p>
 <h2 id="%E7%AE%80%E4%BB%8B">简介</h2>
 <p><strong>EmoeNAP</strong> 是一款超低噪声、高增益、高带宽的低噪声交流信号放大器，非常适合用于LDO、基准电压源芯片、运算放大器等模拟器件/电路的输出噪声测试。EmoeNAP的设计改进自 Linear Technology的 <strong><a href="https://www.analog.com/en/app-notes/an-159.html"  target="_blank">AN-159:Measuring 2nV/√Hz Noise and 120dB Supply Rejection on Linear Regulators</a></strong>。</p>
-<p>AN-159中使用了4个 <strong>THAT300</strong> 四单元匹配晶体管对。一对晶体管作为运放的差分输入级，同一封装内的4个晶体管两两并联，然后再将4个单独的放大器单元用反向加法器等比例相加，达到平均降噪的效果。<br />
-相较于原设计，EmoeNAP使用了超低电压噪声的运算放大器，同样通过多通道并联来实现超低噪声性能。在兼顾性能的同时还降低了电路面积和成本。同时对于后面的第二、第三放大级，以及有源滤波部分做了部分改进：</p>
-<ul>
-<li>将第二个高通RC的电容减小10倍，R增大10倍，以减小电容空间和成本</li>
-<li>将输出级的高通RC电容减小10倍，R增大10倍，以减小输出级运放的功耗（原设计带50R负载，改进后带510R负载），同时减小电容体积和成本</li>
-<li>改进电源部分，使用2节锂电池+虚拟地电路产生平衡正负电源（如果有成熟的BMS系统，可使用更多电池串联，以拓展系统动态范围），配有带电压均衡的2S升压充电器，通过Type-C接口输入5V1A即可充电。原设计使用不可充电电池，在2023年有点不环保了（bushi</li>
-</ul>
+<p>AN-159中使用了4个 <strong>THAT300</strong> 四单元匹配晶体管对。一对晶体管作为运放的差分输入级，同一封装内的4个晶体管两两并联，然后再将4个单独的放大器单元用反向加法器等比例相加，达到平均降噪的效果。</p>
 <p>EmoeNAP的主要指标与特点如下：</p>
 <ul>
-<li>10Hz-100kHz带宽输入底噪：176nVrms，源阻抗为0时，折合输入电压噪声谱密度为0.56nV/√Hz（未经过带宽修正，带宽修正后将更小）</li>
-<li>增益固定为80dB，可定制60dB增益（也可自行修改）</li>
-<li>3个输出带宽，分别为10Hz-100kHz、10Hz-1MHz、10Hz-2.5MHz</li>
-<li>典型输出动态范围8Vpp（满电状态下）</li>
-<li>输出阻抗：47Ω(典型值)</li>
+<li>10Hz-100kHz带宽输入底噪：180nVrms，源阻抗为0时，折合输入电压噪声谱密度为0.6nV/√Hz</li>
+<li>增益固定为80dB，可定制60dB增益</li>
+<li>3个输出带宽，分别为10Hz-100kHz、10Hz-1MHz、10Hz-宽带(-3dB带宽约1.8MHz)</li>
+<li>典型输出动态范围6Vpp（满电状态下）</li>
+<li>输出阻抗：50Ω(典型值)</li>
 <li>电池供电，适合悬浮测试，消除接地环路噪声耦合</li>
 </ul>
 <p><img src="https://emoe-blog.oss-cn-hangzhou.aliyuncs.com/emoerd/emoenap/P1.jpg" alt="EmoeNAP" /></p>
 <h2 id="%E5%A4%96%E8%A7%82">外观</h2>
 <p>输入侧，从左到右依次是：电子文档二维码、电源开关、输入SMA接口、USB-C充电口、电源状态指示灯</p>
-<p><img src="https://emoe-blog.oss-cn-hangzhou.aliyuncs.com/emoerd/emoenap/P3.jpg" alt="EmoeNAP" /></p>
-<p>输出侧，从左到右依次为宽带（10Hz-2MHz）、10Hz-1MHz、10Hz-100kHz带宽的输出SMA接口</p>
-<p><img src="https://emoe-blog.oss-cn-hangzhou.aliyuncs.com/emoerd/emoenap/P4.jpg" alt="EmoeNAP" /></p>
+<p><img src="https://emoe-blog.oss-cn-hangzhou.aliyuncs.com/emoerd/emoenap/EmoeNAP-1.jpg" alt="EmoeNAP-1" /></p>
+<p>输出侧，从左到右依次为宽带（10Hz-1.8MHz）、10Hz-1MHz、10Hz-100kHz带宽的输出SMA接口</p>
+<p><img src="https://emoe-blog.oss-cn-hangzhou.aliyuncs.com/emoerd/emoenap/EmoeNAP-2.jpg" alt="EmoeNAP-2" /></p>
 <h2 id="%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95%E5%8F%8A%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9">使用方法及注意事项</h2>
 <h3 id="%E5%85%85%E7%94%B5">充电</h3>
 <p><strong>此设备只能在非工作状态下进行充电。</strong></p>
@@ -204,38 +198,21 @@ MathJax = {"loader": {"load": ["output/svg"]}, "tex": {"inlineMath": [["$", "$"]
 <p><strong>此设备在工作状态下，不可接入USB电源，否则充电电路将带来严重的噪声干扰</strong></p>
 <p>将EmoeNAP的开关拨至ON（左侧），绿色指示灯亮起（WORK），此时设备处于正常工作状态。如果电池电量过低，会自动触发电池保护功能，此时工作指示灯也将熄灭。</p>
 <h3 id="%E6%8E%A5%E5%85%A5%E8%BE%93%E5%85%A5%E4%BF%A1%E5%8F%B7">接入输入信号</h3>
-<p>请使用SMA同轴线连接到DUT进行测试。（🐟建议在DUT使用IPEX座子，配合IPEX转SMA测试线缆，非常方便）。<br />
+<p>请使用SMA同轴线连接到DUT进行测试。（🐟建议在DUT使用IPEX/MCX座子，配合转接SMA测试线缆，非常方便）。<br />
 同时应注意，应尽量使用同轴线缆/屏蔽线缆作为输入线，<strong>如果输入线缆有任何未屏蔽的部分，都可能引入额外噪声和干扰</strong>。</p>
 <h3 id="%E8%BE%93%E5%85%A5%E4%BF%A1%E5%8F%B7%E8%8C%83%E5%9B%B4">输入信号范围</h3>
 <p>EmoeNAP的增益极高，输入1mVpp的交流信号就将导致输出饱和，所以 <strong>请谨慎决定使用EmoeNAP的场合！！</strong><br />
-输入级耦合电容的耐压为16V，<strong>建议输入信号的直流成分不超过12V</strong>，否则有损坏的风险。</p>
+输入级耦合电容的耐压为16V，<strong>建议输入信号的直流成分不超过±12V</strong>，否则有损坏的风险。</p>
 <p>短时间内为EmoeNAP输入大电压不会损坏，但会增加功耗。不建议对EmoeNAP输入施加 <strong>800uVpp</strong> 以上的大信号。</p>
 <h3 id="%E8%BE%93%E5%87%BA%E5%88%B0%E7%A4%BA%E6%B3%A2%E5%99%A8">输出到示波器</h3>
-<p>输出端的输出阻抗为47R，此电阻串联在opamp输出，是用于防止opamp输出带大容性负载振荡的。如果将输出连接至示波器，请设置示波器为1MΩ输入阻抗，并设置DC耦合。（NAP输出本身就是交流耦合，不存在DC成分）<br />
-测量噪声时，应选择测量项为 <strong>交流有效值（AC.RMS）</strong>。</p>
+<p>输出端的输出阻抗为50R，此电阻串联在opamp输出，是用于防止opamp输出带大容性负载振荡的。如果将输出连接至示波器，请设置示波器为1MΩ输入阻抗，并设置DC耦合。（NAP输出本身就是交流耦合，不存在DC成分）<br />
+测量噪声时，应选择测量项为 <strong>交流有效值（AC.RMS）</strong>。有的示波器上测量项可能为&quot;标准差&quot;，这两者等效。</p>
 <h3 id="%E8%BE%93%E5%87%BA%E5%88%B0DMM">输出到DMM</h3>
 <p>常见DMM的交流档带宽都在300kHz左右，所以只有10Hz-100kHz带宽输出接到DMM，能获得可信的测量结果。<br />
 DMM的交流档输入是高阻输入，无需设置输入阻抗。</p>
 <h3 id="%E8%BE%93%E5%87%BA%E5%88%B0%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AE%BE%E5%A4%87">输出到自定义设备</h3>
-<p>只需要保持设备的输入阻抗为100kΩ以上，输入电容不要太大即可。<br />
+<p>只需要保持设备的输入阻抗为1MΩ以上，输入电容不要太大即可。<br />
 如果必须使用50Ω输入阻抗，请注意电压分压比换算（在50Ω终端电阻上得到约0.5倍输出电压）</p>
-<h3 id="%E5%BA%94%E7%94%A8EmoeNAP-CalKit">应用EmoeNAP-CalKit</h3>
-<p>由于EmoeNAP的增益极高，输入1mVpp的正弦信号，输出就会直接饱和（80dB增益放大后理论上将输出10Vpp，但由于NAP的供电最高只有8.4V，且运放输出摆幅离电源轨约有百mV压差，无法无失真输出10Vpp信号）</p>
-<p>为了方便增益校准、测试与验证，🐟设计了配套的EmoeNAP-CalKit。<br />
-其实非常简单，就是拼凑合适阻值的电阻，然后用拨码开关去选择切换衰减档位。</p>
-<center>
-<img src="https://emoe-blog.oss-cn-hangzhou.aliyuncs.com/article_img/%E5%99%AA%E5%A3%B0%E6%94%BE%E5%A4%A7%E5%99%A8-%E9%87%8F%E5%8C%96%E5%AF%82%E9%9D%99/7.jpg" width="80%" border="0"/>
-<img src="https://emoe-blog.oss-cn-hangzhou.aliyuncs.com/article_img/%E5%99%AA%E5%A3%B0%E6%94%BE%E5%A4%A7%E5%99%A8-%E9%87%8F%E5%8C%96%E5%AF%82%E9%9D%99/8.jpg" width="80%" border="0"/>
-<img src="https://emoe-blog.oss-cn-hangzhou.aliyuncs.com/article_img/%E5%99%AA%E5%A3%B0%E6%94%BE%E5%A4%A7%E5%99%A8-%E9%87%8F%E5%8C%96%E5%AF%82%E9%9D%99/9.jpg" width="80%" border="0"/>
-</center>
-<p>输入信号是交流信号，那么在通带内我们可以忽略输入耦合电容，将其视作短路，EmoeNAP的有效输入电阻是RL=499R。通过RATT与RL（RIN）分压，可以在放大器输入端得到一个较小的信号。</p>
-<p>那么只需要选择RATT为499R、4.5k、49.5k、499.5k，就可以实现6dB、20dB、40dB、60dB的衰减值。</p>
-<h3 id="%E5%A2%9E%E7%9B%8A%E9%AA%8C%E8%AF%81%E4%B8%8E%E6%A0%A1%E5%87%86">增益验证与校准</h3>
-<p>准备一台幅度准确的信号源，一台示波器/高精度DMM，以及EmoeNAP-CalKit。<br />
-设置信号源输出20mVrms、频率10kHz的正弦信号，连接到EmoeNAP-CalKit上，设置CalKit衰减为40dB，在EmoeNAP输入端可得到200uVrms的交流信号。</p>
-<p>然后将EmoeNAP的10Hz-100kHz输出端接到示波器输入端，设置示波器DC耦合，1MΩ输入阻抗，开启AC.RMS测量项，调整波形合适，此时输出真有效值应该为2Vrms。</p>
-<p>如果输出离2Vrms偏离较大，可以调整电路板上的Gain TRIM电位器，调整幅度至2Vrms，即可完成增益校准。</p>
-<p>如果示波器精度不高，可以用DMM的交流档交叉验证测试结果。</p>
 <h3 id="%E6%B5%8B%E8%AF%95%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9">测试注意事项</h3>
 <ul>
 <li>尽量不要让输入端接有任何陶瓷电容，陶瓷电容受到任何震动都会产生噪声电压，破坏测量结果。如果不能没有，请做好隔震措施再测试</li>
@@ -248,12 +225,10 @@ DMM的交流档输入是高阻输入，无需设置输入阻抗。</p>
 <p><img src="https://emoe-blog.oss-cn-hangzhou.aliyuncs.com/emoerd/emoenap/100k.jpg" alt="100kHz_Variation" /></p>
 <p>1MHz带宽的典型bode响应如下(由于增加了40dB衰减，所以测试出的增益为40dB)：</p>
 <p><img src="https://emoe-blog.oss-cn-hangzhou.aliyuncs.com/emoerd/emoenap/1M.jpg" alt="1MHz_Variation" /></p>
-<p>抽取6个样本，测试100kHz带宽的低通滤波器响应：</p>
-<p><img src="https://emoe-blog.oss-cn-hangzhou.aliyuncs.com/emoerd/emoenap/1.jpg" alt="100kHz" /></p>
-<p>抽取6个样本，测试1MHz带宽的低通滤波器响应(由于高频段输出幅度太小，示波器无法准确测量rms值，故有较大起伏)：</p>
-<p><img src="https://emoe-blog.oss-cn-hangzhou.aliyuncs.com/emoerd/emoenap/2.jpg" alt="1MHz" /></p>
+<p>信号源输出衰减500倍后接入EmoeNAP，使用示波器测试3个输出的Bode图，如下：</p>
+<p><img src="https://emoe-blog.oss-cn-hangzhou.aliyuncs.com/emoerd/emoenap/EmoeNAP_Bode.png" alt="Bode" /></p>
 <h3 id="%E5%BA%95%E5%99%AA%E6%B5%8B%E8%AF%95">底噪测试</h3>
-<p>使用SMA-Short将输入短接，测量10Hz-100kHz、10Hz-1MHz、10Hz-Wideband输出端的噪声，分别为1.716mVrms、5.47mVrms、12.853mVrms。</p>
+<p>使用SMA-Short将输入短接，测量10Hz-100kHz、10Hz-1MHz、10Hz-Wideband输出端的噪声，分别为1.8mVrms、5.47mVrms、12.853mVrms。</p>
 <p>由于器件差异和增益校准误差，底噪可能略有波动。</p>
 <center>
 <img src="https://emoe-blog.oss-cn-hangzhou.aliyuncs.com/article_img/%E5%99%AA%E5%A3%B0%E6%94%BE%E5%A4%A7%E5%99%A8-%E9%87%8F%E5%8C%96%E5%AF%82%E9%9D%99/nf_100k.PNG" width="80%" border="0"/>
@@ -317,6 +292,7 @@ DMM的交流档输入是高阻输入，无需设置输入阻抗。</p>
 <ul>
 <li>2024.1.31 初版发布（v1.0）</li>
 <li>2024.2.27 增加图片，部分内容修订</li>
+<li>2025.06.10 硬件更新为V1.1.4，输入端支持双极性直流偏置</li>
 </ul>
 
                         
