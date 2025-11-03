@@ -154,18 +154,33 @@ MathJax = {"loader": {"load": ["output/svg"]}, "tex": {"inlineMath": [["$", "$"]
                     <div id="article_content">
                         
                             <h1 id="Emoe-Pulse-Lite-V2-%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C">Emoe Pulse Lite V2 用户手册</h1>
-<p><img src="https://cnpp-image.oss-cn-beijing.aliyuncs.com/emoe_rd_project/cnpp_01_emoe_pulse/emoe_pulse_lite_v2_1/img/0-1.JPG" alt="0-1" /></p>
+<center>
+<img src="https://emoe-blog.oss-cn-hangzhou.aliyuncs.com/emoerd/EmoePulse/EmoePulse_1.jpg" alt="EmoePulse_1" width=80%/>
+</center>
 <blockquote>
-<p>硬件版本： 2.1<br />
-手册版本： 1.0</p>
+<p>硬件版本： 2.4<br />
+手册版本： 1.2</p>
 </blockquote>
-<h2 id="1.-%E7%AE%80%E4%BB%8B">1. 简介</h2>
-<p>Emoe Pulse Lite（下简称Pulse）是一款超低功耗的便携高速窄脉冲发生器，用于一定范围内的带宽测量及线缆检测。Pulse 的电路衍生自Jim Williams于<a href="https://www.analog.com/media/en/technical-documentation/application-notes/an47fa.pdf"  target="_blank">LT AN47</a>等参考手册中发布的雪崩脉冲发生电路，如下图：</p>
+<h2 id="%E8%B4%AD%E4%B9%B0">购买</h2>
+<p>如果需要购买，请扫码加入Emoe R&amp;D交流群获取货品备货信息：</p>
+<center>
+<img src="https://emoe-blog.oss-cn-hangzhou.aliyuncs.com/emoerd/Common%20Resource/erd_qrcode.jpg" alt="baidu" width=50% border="0"/>
+</center>
+<p>也可直接访问我们的淘宝店铺，有库存即可下单：<a href="https://shop404388371.taobao.com/?spm=pc_detail.29232929/evo365560b447259.shop_block.dshopinfo.103e7dd6y8VG55"  target="_blank">https://shop404388371.taobao.com/?spm=pc_detail.29232929/evo365560b447259.shop_block.dshopinfo.103e7dd6y8VG55</a></p>
+<h2 id="%E7%AE%80%E4%BB%8B">简介</h2>
+<p>Emoe Pulse（下简称Pulse）是一款超低功耗的便携高速窄脉冲发生器，用于一定范围内的带宽测量及线缆质量检测。Pulse 的电路衍生自Jim Williams于<a href="https://www.analog.com/media/en/technical-documentation/application-notes/an47fa.pdf"  target="_blank">LT AN47</a>等参考手册中发布的雪崩脉冲发生电路，如下图：</p>
 <p><img src="https://cnpp-image.oss-cn-beijing.aliyuncs.com/emoe_rd_project/cnpp_01_emoe_pulse/emoe_pulse_lite_v2_1/img/1-1.png" alt="1-1" /></p>
 <p>Pulse对Jim的设计进行了低功耗方向的优化，采用了雪崩击穿电压更低的射频三极管，并设计了超低功耗的DC-DC系统，使得整机可以在一片CR2032的供电下稳定工作较长时间。同时，Pulse亦可选择使用Type-C接口供电，两种供电方式通过开关选择，在通过Type-C接口供电时不需取下电池。</p>
-<p><img src="https://cnpp-image.oss-cn-beijing.aliyuncs.com/emoe_rd_project/cnpp_01_emoe_pulse/emoe_pulse_lite_v2_1/img/1-2.JPG" alt="1-2" /></p>
-<h2 id="2.-%E4%B8%BB%E8%A6%81%E6%8C%87%E6%A0%87">2. 主要指标</h2>
-<p>注意：由于Pulse电路的脉冲振荡受可调电容C影响，以下参数仅供参考。</p>
+<center>
+<img src="https://emoe-blog.oss-cn-hangzhou.aliyuncs.com/emoerd/EmoePulse/EmoePulse_2.jpg" alt="EmoePulse_2" width=70%/>
+<img src="https://emoe-blog.oss-cn-hangzhou.aliyuncs.com/emoerd/EmoePulse/EmoePulse_3.jpg" alt="EmoePulse_3" width=70%/>
+</center>
+<h2 id="%E8%B4%A7%E5%93%81%E6%B8%85%E5%8D%95">货品清单</h2>
+<ul>
+<li>EmoePulse主板</li>
+<li>CR2032电池(安装在主板上)</li>
+</ul>
+<h2 id="%E4%B8%BB%E8%A6%81%E6%8C%87%E6%A0%87">主要指标</h2>
 <table>
 <thead>
 <tr>
@@ -184,19 +199,19 @@ MathJax = {"loader": {"load": ["output/svg"]}, "tex": {"inlineMath": [["$", "$"]
 </tr>
 <tr>
   <td>上升时间</td>
-  <td>&lt; 350ps</td>
+  <td>150ps(典型值)</td>
 </tr>
 <tr>
   <td>脉冲峰值@50Ohm</td>
-  <td>0.8V</td>
+  <td>2Vpk</td>
 </tr>
 <tr>
   <td>脉冲峰值@1MOhm</td>
-  <td>1.2V</td>
+  <td>1.2Vpk</td>
 </tr>
 <tr>
   <td>脉冲重复频率</td>
-  <td>200kHz</td>
+  <td>约200kHz</td>
 </tr>
 <tr>
   <td>工作电流@3.0V</td>
@@ -205,27 +220,42 @@ MathJax = {"loader": {"load": ["output/svg"]}, "tex": {"inlineMath": [["$", "$"]
 </tbody>
 </table>
 <p>经Keysight DSAV334A 33GHz 80Gsa/s 测试的脉冲参数：</p>
-<h2 id="3.-%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95">3. 使用方法</h2>
-<p>首先应该将包装中的CR2032电池装入Pulse背面的电池座：</p>
-<p><img src="https://cnpp-image.oss-cn-beijing.aliyuncs.com/emoe_rd_project/cnpp_01_emoe_pulse/emoe_pulse_lite_v2_1/img/1-3-0.jpg" alt="1-3-0" /></p>
+<center>
+<img src="https://emoe-blog.oss-cn-hangzhou.aliyuncs.com/emoerd/EmoePulse/EmoePulse_Test_Keysight_1.png" alt="EmoePulse_k1" width=70%/>
+<img src="https://emoe-blog.oss-cn-hangzhou.aliyuncs.com/emoerd/EmoePulse/EmoePulse_Test_Keysight_2.png" alt="EmoePulse_k2" width=70%/>
+<img src="https://emoe-blog.oss-cn-hangzhou.aliyuncs.com/emoerd/EmoePulse/EmoePulse_Test_Keysight.jpg" alt="EmoePulse_keysight" width=70%/>
+</center>
+<h2 id="%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95">使用方法</h2>
+<p>首先应该将包装中的CR2032电池装入Pulse背面的电池座（出厂已安装）</p>
 <p>或接入5V供电的Type-C线缆。开关拨至<code>BAT</code>处，Pulse由电池供电；拨至对侧则为Type-C接口供电。</p>
-<p>Pulse的主要功能为单一窄脉冲源或线缆测试仪。Pulse拥有两个对称的<strong>输出</strong>端口，在作为单一窄脉冲源时，应在不用的端口装上附带的50Ohm负载帽。脉冲输出端口与待测端口连接时，应根据需要加入50Ohm匹配器，下图展示了使用Pulse测试示波器的模拟输入带宽：</p>
-<p><img src="https://cnpp-image.oss-cn-beijing.aliyuncs.com/emoe_rd_project/cnpp_01_emoe_pulse/emoe_pulse_lite_v2_1/img/1-3.JPG" alt="1-3" /></p>
+<p>Pulse的主要功能为单一窄脉冲源或线缆测试仪。脉冲输出端口与待测端口连接时，应根据需要加入50Ohm匹配器，下图展示了使用Pulse测试示波器的模拟输入带宽（端接50欧匹配）：</p>
+<center>
+<img src="https://emoe-blog.oss-cn-hangzhou.aliyuncs.com/emoerd/EmoePulse/EmoePulse_Test_match.jpg" alt="EmoePulse_test_match" width=80%/>
+</center>
+<center>
 <p>在以较大水平时间观察时，示波器应显示如下的窄脉冲串：</p>
-<p><img src="https://cnpp-image.oss-cn-beijing.aliyuncs.com/emoe_rd_project/cnpp_01_emoe_pulse/emoe_pulse_lite_v2_1/img/1-4.JPG" alt="1-4" /></p>
-<p>在设置好触发电平后将水平时间减小至5ns/div左右，可观察窄脉冲及上升时间：</p>
-<p><img src="https://cnpp-image.oss-cn-beijing.aliyuncs.com/emoe_rd_project/cnpp_01_emoe_pulse/emoe_pulse_lite_v2_1/img/1-5.JPG" alt="1-5" /></p>
-<p>当将Pulse作为线缆测试仪使用时，应将一端口紧贴示波器安装，另一端口接待测线缆。下图展示了测试开路传输线的效果：</p>
-<p><img src="https://cnpp-image.oss-cn-beijing.aliyuncs.com/emoe_rd_project/cnpp_01_emoe_pulse/emoe_pulse_lite_v2_1/img/1-6.JPG" alt="1-6" /></p>
+<img src="https://emoe-blog.oss-cn-hangzhou.aliyuncs.com/emoerd/EmoePulse/EmoePulse_Test_coarse.jpg" alt="EmoePulse_Test_coarse" width=80%/>
+</center>
+<center>
+<p>在设置好触发电平后将水平时间减小至5ns/div左右，可观察窄脉冲及上升时间（未进行端接匹配）：</p>
+<img src="https://emoe-blog.oss-cn-hangzhou.aliyuncs.com/emoerd/EmoePulse/EmoePulse_Test_fine.jpg" alt="EmoePulse_Test_fine" width=80%/>
+</center>
+<p>当将Pulse作为线缆测试仪使用时，应使用BNC三通连接器紧贴示波器安装，另一端口接待测线缆。下图展示了测试开路传输线的效果：</p>
+<center>
+<img src="https://emoe-blog.oss-cn-hangzhou.aliyuncs.com/emoerd/EmoePulse/EmoePulse_Test_coax_open.jpg" alt="EmoePulse_Test_open" width=80%/>
+</center>
+<p>在线缆终端端接50欧匹配负载后，线缆反射的波包大部分消失（完美匹配时，不应存在反射，此处转接器中存在轻微阻抗不匹配）：</p>
+<center>
+<img src="https://emoe-blog.oss-cn-hangzhou.aliyuncs.com/emoerd/EmoePulse/EmoePulse_Test_coax_match.jpg" alt="EmoePulse_Test_match" width=80%/>
+</center>
+<p>在线缆终端短路后，线缆反射的波包呈现另一种形态：</p>
+<center>
+<img src="https://emoe-blog.oss-cn-hangzhou.aliyuncs.com/emoerd/EmoePulse/EmoePulse_Test_coax_short.jpg" alt="EmoePulse_Test_short" width=80%/>
+</center>
 <h2 id="%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5">参考链接</h2>
 <ul>
-<li>Application Note 47, High Speed Amplifier Techniques: <a href="https://www.analog.com/media/en/technical-documentation/application-notes/an47fa.pdf"  target="_blank">https://www.analog.com/media/en/technical-documentation/application-notes/an47fa.pdf</a></li>
-<li>Application Note 94, Slew Rate Verification for Wideband Amplifiers: <a href="https://www.analog.com/media/en/technical-documentation/application-notes/an94f.pdf"  target="_blank">https://www.analog.com/media/en/technical-documentation/application-notes/an94f.pdf</a></li>
-</ul>
-<h2 id="%E9%B8%A3%E8%B0%A2">鸣谢</h2>
-<ul>
-<li>@FloydFish的测试与线上手册支持</li>
-<li>@HAIDERdunk的33GHz示波器测试支持</li>
+<li>Application Note 47, High Speed Amplifier Techniques</li>
+<li>Application Note 94, Slew Rate Verification for Wideband Amplifiers</li>
 </ul>
 <h2 id="%E4%BF%AE%E8%AE%A2%E5%8E%86%E5%8F%B2">修订历史</h2>
 <table>
@@ -247,13 +277,13 @@ MathJax = {"loader": {"load": ["output/svg"]}, "tex": {"inlineMath": [["$", "$"]
   <td>1.1</td>
   <td>增加了电池安装方法图以及上升沿测试图</td>
 </tr>
+<tr>
+  <td>2025-11-03</td>
+  <td>1.2</td>
+  <td>EmoePulse V2.4发布</td>
+</tr>
 </tbody>
 </table>
-<h2 id="%E8%B4%AD%E4%B9%B0">购买</h2>
-<p>如果需要购买，请扫码加入Emoe R&amp;D交流群获取货品备货信息：</p>
-<center>
-<img src="https://emoe-blog.oss-cn-hangzhou.aliyuncs.com/emoerd/Common%20Resource/erd_qrcode.jpg" alt="baidu" width=50% border="0"/>
-</center>
 
                         
                     </div>
